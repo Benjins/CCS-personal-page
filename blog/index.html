@@ -6,8 +6,30 @@
 <body>
 <h2>Display code.</h2>
 <blockquote class="line-number"><pre><code>
-so i type things?
-do they happen?
+<span class="keyword">class</span> Component {
+    <span class="comment">// Fields ...</span>
+    
+    <span class="keyword">public: </span>
+    <span class="keyword">virtual void</span> Activate() = 0;
+    
+    <span class="keyword">virtual</span> ~Component(){}
+}
 </blockquote></code></pre>
+<p>Which is then subclassed to:</p>
+<blockquote class="line-number"><pre><code>
+<span class="keyword">class</span> SlyComponent : Component{
+    <span class="comment">// Fields ...</span>
+    
+    <span class="keyword">public: </span>
+    <span class="keyword">virtual void</span> Activate(){
+        ActivateSly();
+    }
+    
+    <span class="keyword">void</span> ActivateSly();
+    
+    <span class="keyword">virtual</span> ~SlyComponent(){}
+}
+</blockquote></code></pre>
+
 </body>
 </html>
