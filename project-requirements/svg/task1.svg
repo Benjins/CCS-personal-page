@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 800 394" enable-background="new 0 0 800 394" xml:space="preserve">
+<rect y="20" fill="none" width="800" height="26.2"/>
+<text transform="matrix(1 0 0 1 282.5605 38.5039)" font-family="'LucidaSans'" font-size="24">Creating A Revision:</text>
+<path fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M176.8,179.9H22.9c-6.6,0-12-5.4-12-12v-58.3
+	c0-6.6,5.4-12,12-12h153.9c6.6,0,12,5.4,12,12v58.3C188.8,174.5,183.4,179.9,176.8,179.9z"/>
+<rect x="8" y="121.6" fill="none" width="183.8" height="27.9"/>
+<text transform="matrix(1 0 0 1 21.991 135.4883)" font-family="'LucidaSans'" font-size="18">Open up Software</text>
+<path fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M474.2,179.9H320.3c-6.6,0-12-5.4-12-12v-58.3
+	c0-6.6,5.4-12,12-12h153.9c6.6,0,12,5.4,12,12v58.3C486.2,174.5,480.8,179.9,474.2,179.9z"/>
+<rect x="305.4" y="121.6" fill="none" width="183.8" height="46.8"/>
+<text transform="matrix(1 0 0 1 330.1332 135.4883)"><tspan x="0" y="0" font-family="'LucidaSans'" font-size="18">Check Changes </tspan><tspan x="15.5" y="21.6" font-family="'LucidaSans'" font-size="18">for Revision</tspan></text>
+<path fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M779.1,179.9H625.1c-6.6,0-12-5.4-12-12v-58.3
+	c0-6.6,5.4-12,12-12h153.9c6.6,0,12,5.4,12,12v58.3C791.1,174.5,785.7,179.9,779.1,179.9z"/>
+<path fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M173.9,377.1H20c-6.6,0-12-5.4-12-12v-58.3
+	c0-6.6,5.4-12,12-12h153.9c6.6,0,12,5.4,12,12v58.3C185.9,371.7,180.5,377.1,173.9,377.1z"/>
+<rect x="610.2" y="121.6" fill="none" width="183.8" height="41.6"/>
+<text transform="matrix(1 0 0 1 640.4617 135.4883)"><tspan x="0" y="0" font-family="'LucidaSans'" font-size="18">Enter Revision</tspan><tspan x="24.1" y="21.6" font-family="'LucidaSans'" font-size="18">Message</tspan></text>
+<rect x="8" y="315.6" fill="none" width="183.8" height="48.1"/>
+<text transform="matrix(1 0 0 1 15.5789 329.4758)"><tspan x="0" y="0" font-family="'LucidaSans'" font-size="18">Hit “Make Revision”</tspan><tspan x="55.7" y="21.6" font-family="'LucidaSans'" font-size="18">Button</tspan></text>
+<g>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M215.6,136.5"/>
+	<polyline fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="202,136.5 292.9,136.5 277.5,119.6 	"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M278.7,157.9"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M292.9,136.5"/>
+	<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="276.6" y1="155.9" x2="295.4" y2="136.6"/>
+</g>
+<g>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M513.6,134.4"/>
+	<polyline fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="500,134.4 590.9,134.4 575.5,117.5 	"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M576.7,155.8"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M590.9,134.4"/>
+	<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="574.6" y1="153.8" x2="593.4" y2="134.5"/>
+</g>
+<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M43,279h28c-69-88.3,598.6-22.9,669.6-29.9
+	c71-7-29.6-53.1-29.6-53.1"/>
+<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="89.2" y1="252.8" x2="73" y2="280"/>
+</svg>
