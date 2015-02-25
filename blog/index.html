@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Blog</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="https://use.typekit.net/oug6fcr.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
-<h2>Display code.</h2>
-<blockquote class="line-number"><pre><code>
-<span class="keyword">class</span> Component {
-    <span class="comment">// Fields ...</span>
-    
-    <span class="keyword">public: </span>
-    <span class="keyword">virtual void</span> Activate() = 0;
-    
-    <span class="keyword">virtual</span> ~Component(){}
-}
-</blockquote></code></pre>
-<p>Which is then subclassed to:</p>
-<blockquote class="line-number"><pre><code>
-<span class="keyword">class</span> SlyComponent : Component{
-    <span class="comment">// Fields ...</span>
-    
-    <span class="keyword">public: </span>
-    <span class="keyword">virtual void</span> Activate(){
-        ActivateSly();
-    }
-    
-    <span class="keyword">void</span> ActivateSly();
-    
-    <span class="keyword">virtual</span> ~SlyComponent(){}
-}
-</blockquote></code></pre>
-
+<div id="main-container">
+	<h2></h2>
+	<p>When writing C++ code, a common trade-off is virtual or static dispatch.  Virtual dispatch is C++'s way of implementing dynamic dispatch, and allows for greater flexibility.  A base class can have several child classes, and each can override the virtual method.  This then allows for the method to be chosen at runtime, as opposed to compile-time.</p>
+	<p>However, virtual methods aren't without issues.  Although the extent is debated, they carry some runtime penalty.  A static method simply executes a known function, but a virtual method requires jumping across two pointers to find the proper function.  This can cause cache misses, and slows down execution.</p>
+	<p>Balancing these two is common, and functionality will often move from virtual to static methods as optimization becomes more important, and flexibility is less needed.</p>
+	<p>To this end, I "came up" with an idea that's probably been done all over the place.  But, I thought it was neat, so here:</p>
+	<blockquote>For each virtual method in a class, have it delegate to a corresponding non-virtual method where the actual work is done.</blockquote>
+	<blockquote class="line-number"><pre><code>
+	<span class="keyword">class</span> <span class="type">Component</span> {
+		<span class="comment">// Fields ...</span>
+		
+		<span class="keyword">public: </span>
+		<span class="keyword">virtual void</span> Activate() = 0;
+		
+		<span class="keyword">virtual</span> ~Component(){}
+	}
+	</blockquote></code></pre>
+	<p>Which is then subclassed to:</p>
+	<blockquote class="line-number"><pre><code>
+	<span class="keyword">class</span> <span class="type">SlyComponent</span> : <span class="type">Component</span>{
+		<span class="comment">// Fields ...</span>
+		
+		<span class="keyword">public: </span>
+		<span class="keyword">virtual void</span> Activate(){
+			ActivateSly();
+		}
+		
+		<span class="keyword">void</span> ActivateSly();
+		
+		<span class="keyword">virtual</span> ~SlyComponent(){}
+	}
+	</blockquote></code></pre>
+</div>
 </body>
 </html>

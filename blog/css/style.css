@@ -1,14 +1,25 @@
+#main-container{
+	margin-left: 60px;
+	width: 70%;
+	text-align:justify;
+	-webkit-font-smoothing: antialiased;
+}
+
 pre {
   font-family: "Courier New" Courier monospace;
 }
 
+p{
+	font-family: "proxima-nova", Verdana, sans-serif;
+	font-weight: 100;
+}
+
 blockquote {
-  background: #f0f0f0;
+  background: #eee;
   border-left: 8px solid #ccc;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
-  width: 50%;
 }
 
 .keyword{
@@ -21,6 +32,10 @@ blockquote {
 
 .number{
 	color: #112211;
+}
+
+.type{
+	color: #55aacc;
 }
 
 .quote{
