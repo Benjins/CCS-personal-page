@@ -49,7 +49,9 @@ var type = "Circ"
 
 function KeyPress(e) {
       var evtobj = window.event? event : e
-      if (evtobj.keyCode == 90 && evtobj.ctrlKey) alert("Ctrl+z");
+      if (evtobj.keyCode == 90 && evtobj.ctrlKey){
+		
+	  };
 }
 
 function AddElem(x, y){
@@ -88,6 +90,6 @@ function TrueY(e){
 
 var isMouseDown = false;
 document.onkeyup     = function(event) { var evtobj = window.event? event : e; if (evtobj.keyCode == 90 && evtobj.ctrlKey){svgElements.pop().Remove();} };
-document.onmousedown = function(e) { isMouseDown = true; AddElem(TrueX(e), TrueY(e));};
-document.onmouseup   = function(e) { isMouseDown = false; };
-document.onmousemove = function(e) { if(isMouseDown) {svgElements[svgElements.length-1].Update(TrueX(e), TrueY(e));} };
+document.onmousedown = function(e) { if(e.which == 1){isMouseDown = true; AddElem(TrueX(e), TrueY(e));}};
+document.onmouseup   = function(e) { if(e.which == 1){isMouseDown = false; }};
+document.onmousemove = function(e) { if(e.which == 1){if(isMouseDown) {svgElements[svgElements.length-1].Update(TrueX(e), TrueY(e));} }};
