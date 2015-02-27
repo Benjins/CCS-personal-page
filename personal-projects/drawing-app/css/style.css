@@ -18,3 +18,29 @@
 .ui-toolbar-icon{
 	width: 64px;
 }
+
+.color-picker{
+	position: fixed;
+	margin-left: 180px;
+	margin-top: 85px;
+	width: 150px;
+	height: 150px;
+	border: 1px solid #050505;
+	background: #ff0000;
+}
+
+.color-picker-grad{
+	position: absolute;
+	margin: 0px 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url(img/color-picker.gif);
+}
+
+
+
+
+
+
+
+

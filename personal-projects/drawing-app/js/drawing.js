@@ -12,7 +12,13 @@ window.onload = function(){
 }
 
 function pickColor(){
-	
+	var elem = document.getElementById("color-picker");
+	if(elem.style.display === ""){
+		elem.style.display = "none";
+	}
+	else{
+		elem.style.display = "";
+	}
 }
 
 var SVGCirc = function(x, y, r, col){
@@ -48,7 +54,6 @@ SVGCirc.prototype.Remove = function(){
 }
 
 SVGCirc.prototype.Update = function(x, y){
-	//console.log("this.x: " + this.x + "  x: " + x + "  this:y: " + this.y + "  y: " + y);
 	this.r = Math.max(Math.abs(x - this.x), Math.abs(y - this.y));
 	var circle = document.getElementById(this.id);
 	circle.setAttribute("r", this.r);
