@@ -18,6 +18,8 @@ function pickColor(){
 var SVGCirc = function(x, y, r, col){
 	this.x = x;
 	this.y = y;
+	this.startX = x;
+	this.startY = y;
 	this.r = r;
 	this.color = col;
 	this.id = "svgElem_" + svgElements.length;
@@ -53,6 +55,8 @@ SVGCirc.prototype.Update = function(x, y){
 }
 
 var SVGRect = function(x, y, w, h, col){
+	this.startX = x;
+	this.startY = y;
 	this.x = x;
 	this.y = y;
 	this.w = w;
@@ -80,11 +84,15 @@ SVGRect.prototype.Remove = function(){
 }
 
 SVGRect.prototype.Update = function(x, y){
-	this.w = x - this.x;
-	this.h = y - this.y;
+	this.x = Math.min(x, this.startX);
+	this.y = Math.min(y, this.startY);
+	this.w = Math.abs(this.startX - x);
+	this.h = Math.abs(this.startY - y);
 	var rect = document.getElementById(this.id);
 	rect.setAttribute("width",  this.w);
 	rect.setAttribute("height", this.h);
+	rect.setAttribute("x", this.x);
+	rect.setAttribute("y", this.y);
 }
 
 function AddElem(x, y){
@@ -137,8 +145,8 @@ document.onmousedown = function(e) { if(e.which == 1){isMouseDown = true; AddEle
 document.onmouseup   = function(e) { 
 							if(e.which == 1){
 								isMouseDown = false;
-								if(svgElements.length > 0 && Math.pow(TrueX(e) - svgElements[svgElements.length-1].x, 2)
-														   + Math.pow(TrueY(e) - svgElements[svgElements.length-1].y, 2) < 2){
+								if(svgElements.length > 0 && Math.pow(TrueX(e) - svgElements[svgElements.length-1].startX, 2)
+														   + Math.pow(TrueY(e) - svgElements[svgElements.length-1].startY, 2) < 2){
 									svgElements[svgElements.length-1].Remove();
 									svgElements.pop();
 								}
