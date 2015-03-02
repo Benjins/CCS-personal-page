@@ -33,7 +33,8 @@ function Tokenise(input){
 				tokenString = "";
 			}
 		}
-		else if(currChar === '+' || currChar === '*' || currChar === '(' || currChar === ')' || currChar === ';'){
+		else if(currChar === '+' || currChar === '*' || currChar === '(' || currChar === ')' 
+			 || currChar === ';' || currChar === ',' || currChar === '-' || currChar === '/'){
 			if(tokenString !== ""){
 				tokenList.push(tokenString);
 				tokenString = "";
@@ -56,7 +57,7 @@ function Tokenise(input){
 function ShuntingYard(tokens){
 	var outputStack = [];
 	var operatorStack = [];
-	var precedence = {"+":2, "*":3};
+	var precedence = {"+":2, "*":3, "-":2, "/":3};
 	var length = tokens.length;
 	for(var i = 0; i < length; i++){
 		var token = tokens[i];
@@ -64,23 +65,53 @@ function ShuntingYard(tokens){
 			operatorStack.push(token);
 		}
 		else if(token === ")"){
+			while(operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== "("){
+				var op = operatorStack.pop();
+				if(op === "*"){
+					outputStack.push(new Mult(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "+"){
+					outputStack.push(new Add(outputStack.pop(), outputStack.pop()));
+				}
+			}
 			
+			operatorStack.pop();
 		}
-		else if(token === "*" || token === "+"){
-			if(operatorStack.length > 0 && precedence[operatorStack[operatorStack.length - 1]] < precedence[token]){
-				 if(token === "*"){
-				 	 console.log("Ouput operator: " + token);
-				 	 outputStack.push(new Mult(outputStack.pop(), outputStack.pop()));
-				 }
-				 else if(token === "+"){
-				 	 console.log("Ouput operator: " + token);
-				 	 outputStack.push(new Add(outputStack.pop(), outputStack.pop()));
-				 }
+		else if(token === ","){
+			while(operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== "("){
+				var op = operatorStack.pop();
+				if(op === "*"){
+					outputStack.push(new Mult(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "+"){
+					outputStack.push(new Add(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "-"){
+					outputStack.push(new Sub(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "/"){
+					outputStack.push(new Div(outputStack.pop(), outputStack.pop()));
+				}
 			}
-			else{
-				console.log("Push operator: " + token);
-				operatorStack.push(token);
+		}
+		else if(token === "*" || token === "+" || token === "/" || token === "-"){
+			while(operatorStack.length > 0 && precedence[operatorStack[operatorStack.length - 1]] >= precedence[token]){
+				var op = operatorStack.pop();
+				if(op === "*"){
+					outputStack.push(new Mult(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "+"){
+					outputStack.push(new Add(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "-"){
+					outputStack.push(new Sub(outputStack.pop(), outputStack.pop()));
+				}
+				else if(op === "/"){
+					outputStack.push(new Div(outputStack.pop(), outputStack.pop()));
+				}
 			}
+			 
+			operatorStack.push(token);
 		}
 		else if(token === ";"){
 			
@@ -96,12 +127,16 @@ function ShuntingYard(tokens){
 	while(operatorStack.length > 0){
 		var op = operatorStack.pop();
 		if(op === "*"){
-			console.log("Ouput end operator: " + op);
 			outputStack.push(new Mult(outputStack.pop(), outputStack.pop()));
 		}
 		else if(op === "+"){
-			console.log("Ouput end operator: " + op);
 			outputStack.push(new Add(outputStack.pop(), outputStack.pop()));
+		}
+		else if(op === "-"){
+			outputStack.push(new Sub(outputStack.pop(), outputStack.pop()));
+		}
+		else if(op === "/"){
+			outputStack.push(new Div(outputStack.pop(), outputStack.pop()));
 		}
 	}
 	
@@ -110,6 +145,16 @@ function ShuntingYard(tokens){
 
 
 var Mult = function(left, right){
+	this.left = left;
+	this.right = right;
+}
+
+var Div = function(left, right){
+	this.left = left;
+	this.right = right;
+}
+
+var Sub = function(left, right){
 	this.left = left;
 	this.right = right;
 }
@@ -124,11 +169,19 @@ var Literal = function(value){
 }
 
 Mult.prototype.eval = function(){
-	return this.left.eval() * this.right.eval();
+	return this.right.eval() * this.left.eval();
 }
 
 Add.prototype.eval = function(){
-	return this.left.eval() + this.right.eval();
+	return this.right.eval() + this.left.eval();
+}
+
+Sub.prototype.eval = function(){
+	return this.right.eval() - this.left.eval();
+}
+
+Div.prototype.eval = function(){
+	return this.right.eval() / this.left.eval();
 }
 
 Literal.prototype.eval = function(){
