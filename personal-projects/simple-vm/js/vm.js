@@ -4,7 +4,7 @@ window.onload = function(){
 
 var lastEntered = "";
 
-function enteredText(ele) {
+function enteredText(ele, event) {
     if(event.keyCode == 13) {
     	lastEntered = ele.value;
         console.log(VMEval(ele.value));
