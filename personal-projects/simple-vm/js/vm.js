@@ -11,7 +11,13 @@ function enteredText(ele, event) {
     	para.innerHTML = ele.value;
     	
     	var answer = document.createElement("p");
-    	answer.innerHTML = VMEval(ele.value);
+    	var response = VMEval(ele.value);
+    	if(response === NaN){
+    		answer.innerHTML = "Please try again."
+    	}
+    	else{
+    		answer.innerHTML = response;
+    	}
     	
     	var container = document.getElementById("conv-container");
     	container.appendChild(para);

@@ -1,3 +1,19 @@
 #main-container{
 
 }
+
+#conv-container{
+	width: 130px;
+}
+
+#conv-container p{
+	font-size: 14px;
+}
+
+#conv-container p:nth-child(even){
+	text-align: right;
+}
+
+#conv-container p:nth-child(odd){
+	color: #888888;
+}
