@@ -7,8 +7,18 @@ var lastEntered = "";
 function enteredText(ele, event) {
     if(event.keyCode == 13) {
     	lastEntered = ele.value;
+    	var para = document.createElement("p");
+    	para.innerHTML = ele.value;
+    	
+    	var answer = document.createElement("p");
+    	answer.innerHTML = VMEval(ele.value);
+    	
+    	var container = document.getElementById("conv-container");
+    	container.appendChild(para);
+    	container.appendChild(answer);
+    	
         console.log(VMEval(ele.value));
-	ele.value = "";        
+		ele.value = "";        
     }
     else if(event.keyCode == 38) {
     	ele.value = lastEntered;
