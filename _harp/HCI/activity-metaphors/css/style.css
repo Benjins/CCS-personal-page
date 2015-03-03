@@ -1,0 +1,62 @@
+* { 
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#main-container{
+	margin-left: 60px;
+	width: 70%;
+	text-align:justify;
+	-webkit-font-smoothing: antialiased;
+}
+
+p{
+	font-family: "proxima-nova", Verdana, sans-serif;
+	font-weight: 100;
+	text-indent: 30px;
+}
+li{
+	font-family: "proxima-nova", Verdana, sans-serif;
+	font-weight: 100;
+}
+
+h2{
+	font-family: "proxima-nova", Verdana, sans-serif;
+	font-weight: 400px;
+}
+
+.header{
+	font-weight: 400px;
+	font-size: 18px;
+	text-indent: 0px;
+}
+
+.metaphor-name{
+	font-style: italic;
+	font-weight: 400;
+}
+
+.activity-row{
+	
+}
+
+.activity-descr{
+	margin: -2px -2px;
+	width: 50%;
+	display: inline-block;
+	vertical-align:top;
+}
+
+.activity-metaphors{
+	line-height: 20px;
+	margin: -2px -2px;
+	padding: 2%;
+	width: 32%;
+	display: inline-block;
+	vertical-align:top;
+}
+
+.conclusion{
+	width: 80%;
+}
