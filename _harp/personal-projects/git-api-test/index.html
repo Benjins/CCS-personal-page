@@ -1,38 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8"/>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/api-calls.js"></script>
 </head>
 <body>
-	<h3>Stats</h3>
-	<button type="button" onclick="hello_alert();">Click me</button>
+<div id="main-container">
+	<h3>Github Projects</h3>
+	<button type="button" onclick="hello_alert();">See what projects I've done</button>
 	<div id='stat-body' style="margin-top: 30px;">
 		<table class="gridtable">
 		  <tr>
-			<th>Movie Title</th>
-			<th>Genre</th>
-			<th>Year</th>
-			<th>Gross</th>
-		  </tr>
-		  <tr>
-			<td data-th="Movie Title">Star Wars</td>
-			<td data-th="Genre">Adventure, Sci-fi</td>
-			<td data-th="Year">1977</td>
-			<td data-th="Gross">$460,935,665</td>
-		  </tr>
-		  <tr>
-			<td data-th="Movie Title">Howard The Duck</td>
-			<td data-th="Genre">"Comedy"</td>
-			<td data-th="Year">1986</td>
-			<td data-th="Gross">$16,295,774</td>
-		  </tr>
-		  <tr>
-			<td data-th="Movie Title">American Graffiti</td>
-			<td data-th="Genre">Comedy, Drama</td>
-			<td data-th="Year">1973</td>
-			<td data-th="Gross">$115,000,000</td>
+			<th>Repo Name</th>
+			<th>Language</th>
+			<th># of Commits</th>
 		  </tr>
 		</table>
 	</div>
@@ -44,5 +27,6 @@
 		  	</tr>
 		</table>
 	</div>
+</div>
 </body>
 </html>
