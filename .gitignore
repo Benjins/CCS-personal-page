@@ -1,6 +1,9 @@
 .DS_Store
 */.DS_Store
 
+_harp/personal-projects/deployment/**/*.zip
+personal-projects/deployment/**/*.zip
+
 *.css~
 *.html~
 *.js~
