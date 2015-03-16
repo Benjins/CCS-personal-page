@@ -6,6 +6,10 @@
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
+b{
+	font-weight: 600, 700;
+}
+
 #main-container{
 	margin-left: 60px;
 	width: 80%;
