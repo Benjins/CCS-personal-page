@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Learning WebGL &mdash; lesson 1</title>
+<meta charset="utf-8">
+
+<script type="text/javascript" src="js/glMatrix-0.9.5.min.js"></script>
+
+<script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    varying vec2 pos;
+    
+    void main(void) {
+        gl_FragColor = vec4(pos.x, pos.y, 1.0, 1.0);
+    }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 vertexPos;
+    attribute vec2 uv;
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+    
+    varying vec2 pos;
+    
+    void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(vertexPos, 1.0);
+        pos = vertexPos.xy;
+    }
+</script>
+
+
+<script type="text/javascript" src="js/model.js">
+</script>
+
+
+</head>
+
+
+<body onload="webGLStart();">
+    <a href="http://learningwebgl.com/blog/?p=28">&lt;&lt; Back to Lesson 1</a><br />
+
+    <canvas id="model-canvas" style="border: none;" width="500" height="500" onscroll="onCanvasScroll(event)" draggable="true" ondrag="onCanvasDrag(event)" ondragstart="onCanvasDragStart(event)"></canvas>
+
+    <br/>
+    <a href="http://learningwebgl.com/blog/?p=28">&lt;&lt; Back to Lesson 1</a><br />
+</body>
+
+</html>
