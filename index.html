@@ -8,12 +8,56 @@
 *{
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight: 300;
+	line-height: 1.5;
+	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 #main-container{
 	margin: 0 auto;
-	width: 60%;
+	width: 80%;
 	max-width: 1000px;
+}
+
+.top-bar{
+	
+}
+
+.top-bar h2{
+	margin-top: -0.6em;
+	margin-top: -0.6rem;
+	margin-right: 10%;
+	float: left;
+}
+
+.top-bar ul li{
+	width: 32px;
+	float: left;
+	margin-left: 6px;
+}
+
+.top-bar ul li:hover{
+	opacity: 0.5;
+}
+
+
+.top-bar ul{
+	list-style-type: none;
+}
+
+.twitter{
+	background: url();
 }
 
 h2{
@@ -29,7 +73,15 @@ a{
 </head>
 <body>
 <div id="main-container">
-	<h2>Benji Smith's Personal Page</h2>
+	<div class="top-bar">
+		<h2>Benji Smith's Personal Page</h2>
+		<ul>
+			<li class="twitter"><a target="_blank" href="https://twitter.com/benjinsmith"><img width="32px" src="img/twitter.png" alt="Twitter Icon"/></a></li>
+			<li class="github"><a target="_blank" href="https://github.com/Benjins"><img width="32px" src="img/github.png" alt="GitHub Icon"/></a></li>
+			<li class="linkedin"><a target="_blank" href="https://www.linkedin.com/profile/view?id=238334590"><img width="32px" src="img/linkedin.png" alt="LinkedIn Icon"/></a></li>
+		</ul>
+	<div>
+	<br style="clear:both;"/>
 	<a href="HCI/index.html">HCI Projects</a>
 	<br />
 	<a href="personal-projects/index.html">Personal Projects</a>
