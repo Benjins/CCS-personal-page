@@ -1,3 +1,21 @@
+var Model = function(verts, faces){
+	this.verts = verts;
+	this.faces = faces;
+}
+
+var Vector3 = function(x,y,z){
+	this.x = x;
+	this.y = y;
+	this.z = z;
+}
+
+var Vector2 = function(x,y){
+	this.x = x;
+	this.y = y;
+}
+
+var canvasMouseCoords = {"x":0, "y":0};
+
 function SetUpScroll(){
 	var myCanv = document.getElementById("model-canvas");
 	if (myCanv.addEventListener) {
@@ -5,6 +23,8 @@ function SetUpScroll(){
 		myCanv.addEventListener("mousewheel", onCanvasScroll, false);
 		// Firefox
 		myCanv.addEventListener("DOMMouseScroll", onCanvasScroll, false);
+		//Set up mouseover
+		myCanv.addEventListener("onclick", function(evt){console.log(evt);}, false);
 	}
 	// IE 6/7/8
 	else{ 
@@ -12,16 +32,65 @@ function SetUpScroll(){
 	}
 }
 
-window.onload = SetUpScroll;
-
-
 function ParseOBJFile(file){
-
+	var vertices = [];
+	var faces = [];
+	var uvs = [];
+	var lines = file.split("\n");
+	for(var i in lines){
+		var line = lines[i];
+		if(line.length < 2){
+			continue;
+		}
+		else if(line[0] === 'v' && line[1] === 't'){
+			var data = line.split(" ");
+			var uv = new Vector2(parseFloat(data[1]), parseFloat(data[2]));
+			uvs.push(uv);
+		}
+		else if(line[0] === 'v'){
+			var data = line.split(" ");
+			var vertPos = new Vector3(parseFloat(data[1]), parseFloat(data[2]), parseFloat(data[3]));
+			vertices.push(vertPos);
+		}
+		else if(line[0] === 'f'){
+			var data = line.split(" ");
+			if(data[1].split("/").size > 0){
+				var verts = [0,0,0];
+				var uvs = [0,0,0]
+				for(var i = 0; i < 3; i++){
+					var vertData = data[i+1].split("/");
+					verts[i] = parseInt(vertData[0]) - 1;
+					uvs[i] = parseInt(vertData[1]) - 1;
+					
+					var face;
+					face.verts = verts;
+					face.uvs = uvs;
+					faces.push(face);
+				}
+				
+				var face= {};
+				face.verts = verts;
+				faces.push(face);
+			}
+			else{
+				var verts = [0,0,0];
+				for(var i = 0; i < 3; i++){
+					verts[i] = parseInt(data[i+1]) - 1;
+				}
+				
+				var face = {};
+				face.verts = verts;
+				faces.push(face);
+			}
+		}
+	}
+	
+	return new Model(vertices, faces);
 }
-
 
 var gl;
     function initGL(canvas) {
+    	SetUpScroll();
         try {
             gl = canvas.getContext("experimental-webgl");
             gl.viewportWidth = canvas.width;
@@ -61,6 +130,7 @@ var gl;
         }
         return shader;
     }
+    
     var shaderProgram;
     function initShaders() {
         var fragmentShader = getShader(gl, "shader-fs");
@@ -80,36 +150,71 @@ var gl;
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
     }
+    
     var mvMatrix = mat4.create();
     var pMatrix = mat4.create();
     function setMatrixUniforms() {
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
     }
+   
     var triangleVertexPositionBuffer;
-    var squareVertexPositionBuffer;
     function initBuffers() {
-        triangleVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-        var vertices = [
-             0.0,  1.0,  0.0,
-            -1.0, -1.0,  0.0,
-             1.0, -1.0,  0.0
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        triangleVertexPositionBuffer.itemSize = 3;
-        triangleVertexPositionBuffer.numItems = 3;
-        squareVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-        vertices = [
-             1.0,  1.0,  0.0,
-            -1.0,  1.0,  0.0,
-             1.0, -1.0,  0.0,
-            -1.0, -1.0,  0.0
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        squareVertexPositionBuffer.itemSize = 3;
-        squareVertexPositionBuffer.numItems = 4;
+    	    
+    	triangleVertexPositionBuffer = gl.createBuffer();
+        
+    	
+    	var modelFile = new XMLHttpRequest();
+    	modelFile.open("GET", "data/monkey.obj", true);
+    	modelFile.onreadystatechange = function(){
+		if (modelFile.readyState==4 && (modelFile.status==200 || modelFile.status==0)){
+			/*
+			var model = ParseOBJFile(modelFile.responseText);
+			console.log(model);
+			var vertices = [-1,  1, 0, 
+					 1,  0, 1, 
+					-1, -1, 1];
+			for(var i = 0; i < model.faces.length; i++){
+				for(var j = 0; j < 3; j++){
+					//vertices.push(model.verts[model.faces[i].verts[j]]);
+				}
+			}
+			gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+			triangleVertexPositionBuffer.itemSize = 3;
+			triangleVertexPositionBuffer.numItems = vertices.siz * 3;
+			console.log(vertices);
+			*/
+			
+			var model = ParseOBJFile(modelFile.responseText);
+			
+			gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+			var vertices = [
+			     0.0,  1.0,  0.0,
+			    -1.0, -1.0,  0.0,
+			     1.0, -1.0,  0.0
+			];
+			
+			for(var i = 0; i < model.faces.length; i++){
+				for(var j = 0; j < 3; j++){
+					vertices.push(model.verts[model.faces[i].verts[j]].x);
+					vertices.push(model.verts[model.faces[i].verts[j]].y);
+					vertices.push(model.verts[model.faces[i].verts[j]].z);
+				}
+			}
+			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+			triangleVertexPositionBuffer.itemSize = 3;
+			triangleVertexPositionBuffer.numItems = Math.round(vertices.length / 3);
+			console.log(vertices.length / 3);
+		}
+		else if(modelFile.readyState==4){
+			console.log("Error: Server repsonded with error code: " + modelFile.status);
+		}
+	}
+	
+	modelFile.send();
+	
+        
     }
     var rotX = 0;
     var rotY = 0;
@@ -118,17 +223,25 @@ var gl;
     var currY = 0;
     
     function onCanvasDragStart(evt){
+    	evt.dataTransfer.setData('text/plain', 'This text may be dragged')
     	currX = evt.x;
     	currY = evt.y;
     }
     
     function onCanvasDrag(evt){
+    	var x = evt.x;
+        var y = evt.y;
+    	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+    		x = canvasMouseCoords.x;
+    		y = canvasMouseCoords.y;
+    	}
+    	    
     	if(evt.x != 0 || evt.y != 0){
-    		rotY += currY - evt.y;
-    		rotX -= currX - evt.x;
+    		rotY += currY - y;
+    		rotX -= currX - x;
     	
-    		currX = evt.x;
-    		currY = evt.y;
+    		currX = x;
+    		currY = y;
     	}
     }
     
@@ -153,11 +266,6 @@ var gl;
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
-        mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
-        gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
     }
     function webGLStart() {
         var canvas = document.getElementById("model-canvas");
