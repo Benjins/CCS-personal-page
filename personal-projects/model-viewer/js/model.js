@@ -165,26 +165,9 @@ var gl;
         
     	
     	var modelFile = new XMLHttpRequest();
-    	modelFile.open("GET", "data/monkey.obj", true);
+    	modelFile.open("GET", "https://www.ccs.neu.edu/home/bnsmith/personal-projects/model-viewer/data/monkey.obj", true);
     	modelFile.onreadystatechange = function(){
 		if (modelFile.readyState==4 && (modelFile.status==200 || modelFile.status==0)){
-			/*
-			var model = ParseOBJFile(modelFile.responseText);
-			console.log(model);
-			var vertices = [-1,  1, 0, 
-					 1,  0, 1, 
-					-1, -1, 1];
-			for(var i = 0; i < model.faces.length; i++){
-				for(var j = 0; j < 3; j++){
-					//vertices.push(model.verts[model.faces[i].verts[j]]);
-				}
-			}
-			gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-			triangleVertexPositionBuffer.itemSize = 3;
-			triangleVertexPositionBuffer.numItems = vertices.siz * 3;
-			console.log(vertices);
-			*/
 			
 			var model = ParseOBJFile(modelFile.responseText);
 			
@@ -222,15 +205,35 @@ var gl;
     var currX = 0;
     var currY = 0;
     
+	var mouseDown = false;
+
     function onCanvasDragStart(evt){
-    	evt.dataTransfer.setData('text/plain', 'This text may be dragged')
-    	currX = evt.x;
-    	currY = evt.y;
+		//console.log(evt);
+    	evt.dataTransfer.setData('text/plain', 'This text may be dragged');
+		//console.log(evt);
+		var x, y;
+		if(evt.x && evt.y){
+			x = evt.x;
+			y = evt.y;
+		}
+		else{
+			x = evt.pageX;
+			y = evt.pageY;
+		}
+    	currX = x;
+    	currY = y;
+		evt.preventDefault();
+
+		mouseDown = true;
+		
+		return false;
     }
     
     function onCanvasDrag(evt){
+		//evt.dataTransfer.setData('text/plain', 'This text may be dragged');
     	var x = evt.x;
         var y = evt.y;
+		//console.log(evt);
     	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
     		x = canvasMouseCoords.x;
     		y = canvasMouseCoords.y;
@@ -245,6 +248,32 @@ var gl;
     	}
     }
     
+	function OnCanvasMouseOver(evt){
+		//console.log("OnCanvasMouseOver");
+		if(mouseDown){
+			var x, y;
+			if(evt.x && evt.y){
+				x = evt.x;
+				y = evt.y;
+			}
+			else{
+				x = evt.pageX;
+				y = evt.pageY;
+			}
+			
+			rotY += currY - y;
+    		rotX -= currX - x;
+    	
+    		currX = x;
+    		currY = y;
+		}
+	}
+
+	function OnCanvasDragEnd(evt){
+		//console.log("OnCanvasDragEnd");
+		mouseDown = false;
+	}
+
     var zoom = -7;
     
     function onCanvasScroll(evt){
