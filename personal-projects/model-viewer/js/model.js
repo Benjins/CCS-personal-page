@@ -23,8 +23,6 @@ function SetUpScroll(){
 		myCanv.addEventListener("mousewheel", onCanvasScroll, false);
 		// Firefox
 		myCanv.addEventListener("DOMMouseScroll", onCanvasScroll, false);
-		//Set up mouseover
-		myCanv.addEventListener("onclick", function(evt){console.log(evt);}, false);
 	}
 	// IE 6/7/8
 	else{ 
@@ -165,7 +163,7 @@ var gl;
         
     	
     	var modelFile = new XMLHttpRequest();
-    	modelFile.open("GET", "https://www.ccs.neu.edu/home/bnsmith/personal-projects/model-viewer/data/monkey.obj", true);
+    	modelFile.open("GET", "data/monkey.obj", true);
     	modelFile.onreadystatechange = function(){
 		if (modelFile.readyState==4 && (modelFile.status==200 || modelFile.status==0)){
 			
@@ -277,8 +275,9 @@ var gl;
     var zoom = -7;
     
     function onCanvasScroll(evt){
-    	if(zoom < -0.2 || evt.wheelDeltaY/120 < 0){
-    		zoom +=  evt.wheelDeltaY/250;
+		var delta = evt.wheelDeltaY ? evt.wheelDeltaY : evt.detail * -20;
+    	if(zoom < -0.2 || delta/120 < 0){
+    		zoom +=  delta/250;
     	}
     }
     
