@@ -28,7 +28,7 @@
     
     void main(void) {
         gl_Position = uPMatrix * uMVMatrix * vec4(vertexPos, 1.0);
-        pos = vertexPos.xy;
+        pos = uv;
     }
 </script>
 
