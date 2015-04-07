@@ -11,7 +11,7 @@ function hello_alert(){
 		else if(req.readyState==4){
 			console.log("Error: Github repsonded with error code: " + req.status);
 		}
-	}
+	};
 	req.open("GET", "https://api.github.com/users/benjins/repos", true);
 	req.send();
 }
@@ -40,7 +40,7 @@ function DisplayRepos(repoJson){
 
 	console.log("Repo count: " + repoJson.length);
 	
-	var repoNames = [];
+	//var repoNames = [];
 	
 	for(var i in repoJson){
 		var repo = repoJson[i];
@@ -68,7 +68,7 @@ function AddRepository(tableElem, repoName, repoUrl, repoLanguage){
 			
 			UpdateLanguageStats();		
 		}
-	}
+	};
 
 	req.onreadystatechange = function(){
 		if (req.readyState==4 && req.status==200){
@@ -93,7 +93,7 @@ function AddRepository(tableElem, repoName, repoUrl, repoLanguage){
 				UpdateCommitCount(repoName, 2);
 			}
 		}
-	}
+	};
 	
 	req.send();
 	req2.send();
@@ -116,7 +116,7 @@ function UpdateCommitCount(repoName, pageNum){
 				UpdateCommitCount(repoName, pageNum + 1);
 			}
 		}
-	}
+	};
 	
 	req2.send();
 }

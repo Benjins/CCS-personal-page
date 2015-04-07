@@ -2,8 +2,9 @@
 <html>
 
 <head>
-<title>Learning WebGL &mdash; lesson 1</title>
+<title>Model Viewer</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script type="text/javascript" src="js/glMatrix-0.9.5.min.js"></script>
 
@@ -27,7 +28,7 @@
     
     void main(void) {
         gl_Position = uPMatrix * uMVMatrix * vec4(vertexPos, 1.0);
-        pos = vertexPos.xy;
+        pos = uv;
     }
 </script>
 
@@ -40,12 +41,8 @@
 
 
 <body onload="webGLStart();">
-    <a href="http://learningwebgl.com/blog/?p=28">&lt;&lt; Back to Lesson 1</a><br />
+    <canvas id="model-canvas" style="border: none;" width="500" height="500" onscroll="onCanvasScroll(event)" draggable="true" ondragover="onCanvasDrag(event)" ondragstart="onCanvasDragStart(event)" onmouseup="OnCanvasDragEnd(event)" onmousemove="OnCanvasMouseOver(event)"></canvas>
 
-    <canvas id="model-canvas" style="border: none;" width="500" height="500" onscroll="onCanvasScroll(event)" draggable="true" ondrag="onCanvasDrag(event)" ondragstart="onCanvasDragStart(event)"></canvas>
-
-    <br/>
-    <a href="http://learningwebgl.com/blog/?p=28">&lt;&lt; Back to Lesson 1</a><br />
 </body>
 
 </html>
