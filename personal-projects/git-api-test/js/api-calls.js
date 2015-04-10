@@ -1,12 +1,89 @@
+"use strict";
+
 //Global array of language stats for all repos
 var languageStats = [];
 
-function hello_alert(){
+window.onload = function(){
+	DisplayGraph(document.getElementById("lang-graph").getContext("2d"), {});
+};
+
+function DisplayGraph(ctx, numbers){
+	var maxHeight = 0;
+	var columnCount = 0;
+
+	for(var name in numbers){
+		maxHeight = Math.max(maxHeight, numbers[name]);
+		columnCount++;
+	}
+
+	var columnWidth = (ctx.canvas.width / columnCount) * 0.5;
+	var canvasHeight = ctx.canvas.height;
+	var index = 0;
+	
+	ctx.font = "18px sans-serif";
+
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+	var rectData = [];
+
+	for(var name in numbers){
+		var percentHeight = numbers[name]/maxHeight * 0.8;
+		var columnHeight = percentHeight * canvasHeight;
+		var columnStartX = index * columnWidth * 2 + 10;
+		var columnStartY = canvasHeight - columnHeight-1;
+		
+		ctx.fillStyle = "rgb(80,80,250)";
+		ctx.fillRect(columnStartX, columnStartY, columnWidth, columnHeight);
+		rectData[name] = {"x":columnStartX, "y":columnStartY,"width":columnWidth, "height":columnHeight};
+
+		ctx.translate(columnStartX, columnStartY - 10);
+		ctx.rotate(-0.1);
+		ctx.fillStyle = "black";
+		ctx.fillText(name, 6, 0, columnWidth * 1.5);
+
+		ctx.setTransform(1,0,0,1,0,0);
+		index++;
+	}
+
+	ctx.canvas.onmousemove = function(evt){
+		var x = evt.clientX;
+		var y = evt.clientY;
+		var bounds = ctx.canvas.getBoundingClientRect();
+		x -= bounds.left;
+		y -= bounds.top;
+	
+		for(var name in rectData){
+			var rect = rectData[name];
+			var isHovered = x > rect.x 
+						 && x < rect.x + rect.width 
+						 && y > rect.y 
+						 && y < rect.y + rect.height;
+
+			if(isHovered){
+				ctx.fillStyle = "rgb(20,20,220)";
+			}
+			else{
+				ctx.fillStyle = "rgb(80,80,250)";
+			}
+
+			ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+		}
+	}
+
+	ctx.beginPath(); 
+	ctx.lineWidth="3";
+	ctx.strokeStyle="black";
+	ctx.moveTo(0,0);
+	ctx.lineTo(0,ctx.canvas.height);
+	ctx.lineTo(ctx.canvas.width, ctx.canvas.height);
+	ctx.stroke();
+}
+
+function FetchAndDisplayRepoData(){
 	var req = new XMLHttpRequest();
 	req.onreadystatechange = function(){
 		if (req.readyState==4 && req.status==200){
 			DisplayRepos(JSON.parse(req.responseText));
-			//document.getElementById("stat-body").innerHTML=req.responseText;
 		}
 		else if(req.readyState==4){
 			console.log("Error: Github repsonded with error code: " + req.status);
@@ -37,10 +114,6 @@ function DisplayRepos(repoJson){
 	header = document.createElement("th");
 	header.innerHTML = "# of Commits";
 	firstRow.appendChild(header);
-
-	console.log("Repo count: " + repoJson.length);
-	
-	//var repoNames = [];
 	
 	for(var i in repoJson){
 		var repo = repoJson[i];
@@ -84,7 +157,7 @@ function AddRepository(tableElem, repoName, repoUrl, repoLanguage){
 				var langData = listItem.appendChild(document.createElement("td"));
 				langData.innerHTML = repoLanguage;	
 
-				var langData = listItem.appendChild(document.createElement("td"));
+				langData = listItem.appendChild(document.createElement("td"));
 				langData.id = "repo_" + repoName;
 				langData.innerHTML = commits.length;
 			}
@@ -153,4 +226,6 @@ function UpdateLanguageStats(){
 		row.appendChild(item);
 		//console.log(lang + languageStats[lang]);
 	}
+
+	DisplayGraph(document.getElementById("lang-graph").getContext("2d"), languageStats);
 }
