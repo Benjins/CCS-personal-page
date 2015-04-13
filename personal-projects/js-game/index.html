@@ -1,0 +1,136 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<script>
+		var Entity = function(x, y, radius, color){
+			this.x = x;
+			this.y = y;
+			this.r = radius;
+			this.col = color;
+
+			this.onTick = function(dt){};
+			this.onClick = function(x, y, btn){};
+			this.onMouse = function(x, y, btn){};
+		}		
+
+		KeyState = {PRESS:0, HOLD:1, RELEASE:3, UP:4};
+
+		var canvas;
+		var context;
+		var entities = [];
+		var inputKeys = [];
+		for(var i = 0; i < 255; i++){
+			inputKeys[i] = KeyState.UP;
+		}
+
+		function OnKeyUp(key){
+			return inputKeys[key.charCodeAt(0)] === KeyState.RELEASE;
+		}
+
+		function OnKeyDown(key){
+			return inputKeys[key.charCodeAt(0)] === KeyState.PRESS;
+		}
+
+		function OnKey(key){
+			//console.log(inputKeys[key]);
+			return inputKeys[key.charCodeAt(0)] === KeyState.PRESS || inputKeys[key.charCodeAt(0)] === KeyState.HOLD;
+		}
+
+		function EndOfFrameKeys(){
+			for(var i = 0; i < 255; i++){
+				if(inputKeys[i] === KeyState.PRESS){
+					inputKeys[i] = KeyState.HOLD;
+				}
+				if(inputKeys[i] === KeyState.RELEASE){
+					inputKeys[i] = KeyState.UP;
+					console.log(inputKeys[i]);
+				}
+			}
+		}
+		
+		window.onload = function(){
+			canvas = document.getElementById("main-canvas");
+			context = canvas.getContext("2d");
+			if(context === null || context === undefined){
+				alert("Your browser does not support 2D canvas rendering.");
+				return;
+			}
+
+			var newEnt = new Entity(30, 60, 10, "#ee3388");
+			newEnt.pressed = false;
+			var speed = 30;
+			newEnt.onTick = function(dt){
+				if(OnKey("W")){
+					this.y -= dt * speed;
+				}
+				if(OnKey("S")){
+					this.y += dt * speed;
+				}
+				if(OnKey("A")){
+					this.x -= dt * speed;
+				}
+				if(OnKey("D")){
+					this.x += dt * speed;
+				}
+				if(OnKey("T")){
+					if(!pressed){
+						var entSpawn = new Entity(this.x, this.y + 20, 8, "#ccc");
+						entSpawn.onTick = function(dt){
+							this.x += (Math.random()*2-1)*10 * dt;
+							this.y += (Math.random()*2-1)*10 * dt;
+						}
+						entities.push(entSpawn);
+						pressed = true;
+					}
+				}
+				else{
+					pressed = false;
+				}
+			};
+			entities.push(newEnt);
+
+			document.onkeydown = function(evt){
+				var key = evt.which || evt.keyCode;
+				inputKeys[key] = KeyState.PRESS;
+			};
+
+			document.onkeyup = function(evt){
+				var key = evt.which || evt.keyCode;
+				inputKeys[key] = KeyState.RELASE;
+			};
+
+			setInterval(function(){GameLoop(0.033);}, 33);
+		};
+
+		function GameLoop(dt){
+			for(var idx in entities){
+				entities[idx].onTick(dt);
+			}
+
+			RenderScene(context);
+
+			EndOfFrameKeys();
+		}
+
+		function RenderScene(ctx){
+			ctx.clearRect(0,0,800,600);
+			for(var idx in entities){
+				RenderEntity(entities[idx], ctx);
+			}
+		}
+
+		function RenderEntity(ent, ctx){
+			 ctx.beginPath();
+			 ctx.arc(ent.x, ent.y, ent.r, 0, 2 * Math.PI, false);
+			 ctx.fillStyle = ent.col;
+			 ctx.fill();
+		}
+	</script>
+</head>
+<body>
+	<canvas width="800px" height="600px" id="main-canvas">
+		<p>Sorry, looks like your browser doesn't support canvas rendering.</p>
+	</cavas>
+</body>
+</html>
