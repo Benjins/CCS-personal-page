@@ -12,9 +12,11 @@
     precision mediump float;
     
     varying vec2 pos;
+
+	uniform sampler2D uSampler;
     
     void main(void) {
-        gl_FragColor = vec4(pos.x, pos.y, 1.0, 1.0);
+        gl_FragColor = texture2D(uSampler, vec2(pos.s, pos.t));
     }
 </script>
 

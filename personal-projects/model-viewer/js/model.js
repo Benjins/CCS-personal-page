@@ -53,17 +53,17 @@ function ParseOBJFile(file){
 		}
 		else if(line[0] === 'f'){
 			var data = line.split(" ");
-			if(data[1].split("/").size > 0){
+			if(data[1].split("/").length > 0){
 				var verts = [0,0,0];
-				var uvs = [0,0,0]
+				var faceUVs = [0,0,0]
 				for(var i = 0; i < 3; i++){
 					var vertData = data[i+1].split("/");
 					verts[i] = parseInt(vertData[0]) - 1;
-					uvs[i] = parseInt(vertData[1]) - 1;
+					faceUVs[i] = parseInt(vertData[1]) - 1;
 					
-					var face;
+					var face = {};
 					face.verts = verts;
-					face.uvs = uvs;
+					face.uvs = faceUVs;
 					faces.push(face);
 				}
 				
@@ -148,6 +148,7 @@ var gl;
         gl.enableVertexAttribArray(shaderProgram.uvAttribute);
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+		shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
     }
     
     var mvMatrix = mat4.create();
@@ -165,12 +166,10 @@ var gl;
         triangleUVBuffer = gl.createBuffer();
     	
     	var modelFile = new XMLHttpRequest();
-    	modelFile.open("GET", "data/monkey.obj", true);
+    	modelFile.open("GET", "data/test.obj", true);
     	modelFile.onreadystatechange = function(){
 		if (modelFile.readyState==4 && (modelFile.status==200 || modelFile.status==0)){
-			
 			var model = ParseOBJFile(modelFile.responseText);
-			console.log(model);
 			
 			var vertices = [];
 			var uvs = [];
@@ -193,6 +192,7 @@ var gl;
 
 			gl.bindBuffer(gl.ARRAY_BUFFER, triangleUVBuffer);
 			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uvs), gl.STATIC_DRAW);
+			console.log(uvs);
 			triangleUVBuffer.itemSize = 2;
 			triangleUVBuffer.numItems = Math.round(uvs.length / 2);
 		}
@@ -288,24 +288,48 @@ var gl;
     		zoom +=  delta/250;
     	}
     }
-    
+
+	function handleLoadedTexture(texture) {
+		gl.bindTexture(gl.TEXTURE_2D, texture);
+		gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+		gl.bindTexture(gl.TEXTURE_2D, null);
+	}
+
+	var texture;
+	  function initTexture() {
+		texture = gl.createTexture();
+		texture.image = new Image();
+		texture.image.onload = function() {
+		  handleLoadedTexture(texture)
+		}
+
+		texture.image.src = "data/tex.png";
+	}
+		
     function drawScene() {
     	//rot = rot + 0.1;
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
         mat4.identity(mvMatrix);
-        mat4.translate(mvMatrix, [-1, 0.0, zoom]);
+        mat4.translate(mvMatrix, [0.0, 0.0, zoom]);
         mat4.rotate(mvMatrix, Math.PI/90*rotY, [1, 0, 0]); 
         mat4.rotate(mvMatrix, Math.PI/40*rotX, [0, 1, 0]);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-		if(triangleUVBuffer.numItems < triangleVertexPositionBuffer.numItems){
+		if(triangleUVBuffer.numItems <= triangleVertexPositionBuffer.numItems){
 			gl.bindBuffer(gl.ARRAY_BUFFER, triangleUVBuffer);
 		    gl.vertexAttribPointer(shaderProgram.uvAttribute, triangleUVBuffer.itemSize, gl.FLOAT, false, 0, 0);
 		}
+
+		gl.activeTexture(gl.TEXTURE0);
+		gl.bindTexture(gl.TEXTURE_2D, texture);
+		gl.uniform1i(shaderProgram.samplerUniform, 0);
 
         setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
@@ -315,6 +339,7 @@ var gl;
         initGL(canvas);
         initShaders();
         initBuffers();
+		initTexture();
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
         setInterval(drawScene, 15);
