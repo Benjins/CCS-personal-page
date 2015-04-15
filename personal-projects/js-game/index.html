@@ -12,7 +12,13 @@
 			this.onTick = function(dt){};
 			this.onClick = function(x, y, btn){};
 			this.onMouse = function(x, y, btn){};
-		}		
+			this.render = function(ctx){
+				ctx.beginPath();
+			 	ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+			 	ctx.fillStyle = this.col;
+			 	ctx.fill();
+			};
+		};		
 
 		KeyState = {PRESS:0, HOLD:1, RELEASE:3, UP:4};
 
@@ -60,27 +66,48 @@
 			var newEnt = new Entity(30, 60, 10, "#ee3388");
 			newEnt.pressed = false;
 			var speed = 30;
+			
+			var spawnEntity = function(x, y, player){
+				var entSpawn = new Entity(x, y, 8, "#ccc");
+				entSpawn.player = player;
+				entSpawn.onTick = function(dt){
+					var dist = Math.sqrt(Math.pow(this.x - this.player.x, 2) + Math.pow(this.y - this.player.y, 2));
+					if(dist > 50){
+						//this.x += (Math.random()*2-1)*10 * dt;
+						//this.y += (Math.random()*2-1)*10 * dt;
+					}
+					else{
+						var moveVec = {};
+						moveVec.x = (this.x - this.player.x) / dist;
+						moveVec.y = (this.y - this.player.y) / dist;
+						this.x += moveVec.x * speed * dt * 1.5;
+						this.y += moveVec.y * speed * dt * 1.5;
+					}
+				};
+				entities.push(entSpawn);
+			};
+			
+			for(var i = 0; i < 300; i++){
+				spawnEntity((0.8*Math.random() + 0.1) * window.innerWidth, (0.8*Math.random() + 0.1) * window.innerHeight, newEnt);
+			}
+			
 			newEnt.onTick = function(dt){
-				if(OnKey("W")){
+				if(OnKey("W") || OnKey("&")){
 					this.y -= dt * speed;
 				}
-				if(OnKey("S")){
+				if(OnKey("S") || OnKey("(")){
 					this.y += dt * speed;
 				}
-				if(OnKey("A")){
+				if(OnKey("A") || OnKey("%")){
 					this.x -= dt * speed;
 				}
-				if(OnKey("D")){
+				if(OnKey("D") || OnKey("'")){
 					this.x += dt * speed;
 				}
+				
 				if(OnKey("T")){
 					if(!pressed){
-						var entSpawn = new Entity(this.x, this.y + 20, 8, "#ccc");
-						entSpawn.onTick = function(dt){
-							this.x += (Math.random()*2-1)*10 * dt;
-							this.y += (Math.random()*2-1)*10 * dt;
-						}
-						entities.push(entSpawn);
+						spawnEntity(this.x, this.y+20, this);
 						pressed = true;
 					}
 				}
@@ -114,22 +141,17 @@
 		}
 
 		function RenderScene(ctx){
-			ctx.clearRect(0,0,800,600);
+			ctx.canvas.width  = window.innerWidth;
+  			ctx.canvas.height = window.innerHeight;
+			ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
 			for(var idx in entities){
-				RenderEntity(entities[idx], ctx);
+				entities[idx].render(ctx);
 			}
-		}
-
-		function RenderEntity(ent, ctx){
-			 ctx.beginPath();
-			 ctx.arc(ent.x, ent.y, ent.r, 0, 2 * Math.PI, false);
-			 ctx.fillStyle = ent.col;
-			 ctx.fill();
 		}
 	</script>
 </head>
-<body>
-	<canvas width="800px" height="600px" id="main-canvas">
+<body style="background:#444;">
+	<canvas style="width:100%;height:100%;margin:-8px;" width="600px" height="800px" id="main-canvas">
 		<p>Sorry, looks like your browser doesn't support canvas rendering.</p>
 	</cavas>
 </body>
