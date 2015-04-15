@@ -63,32 +63,35 @@
 				return;
 			}
 
-			var newEnt = new Entity(30, 60, 10, "#ee3388");
+			var newEnt = new Entity(window.innerWidth/2, window.innerHeight - 60, 20, "#ee3388");
 			newEnt.pressed = false;
-			var speed = 30;
+			var speed = 70;
 			
 			var spawnEntity = function(x, y, player){
-				var entSpawn = new Entity(x, y, 8, "#ccc");
+				var entSpawn = new Entity(x, y, 16, "#ccc");
 				entSpawn.player = player;
 				entSpawn.onTick = function(dt){
-					var dist = Math.sqrt(Math.pow(this.x - this.player.x, 2) + Math.pow(this.y - this.player.y, 2));
-					if(dist > 50){
-						//this.x += (Math.random()*2-1)*10 * dt;
-						//this.y += (Math.random()*2-1)*10 * dt;
-					}
-					else{
-						var moveVec = {};
-						moveVec.x = (this.x - this.player.x) / dist;
-						moveVec.y = (this.y - this.player.y) / dist;
-						this.x += moveVec.x * speed * dt * 1.5;
-						this.y += moveVec.y * speed * dt * 1.5;
+					for(var idx in entities){
+						var dist = Math.sqrt(Math.pow(this.x - entities[idx].x, 2) + Math.pow(this.y - entities[idx].y, 2));
+						if(entities[idx] === this.player && dist < 80){
+							var moveX = (this.x - this.player.x) / dist;
+							var moveY = (this.y - this.player.y) / dist;
+							this.x += moveX * speed * dt * 1.5;
+							this.y += moveY * speed * dt * 1.5;
+						}
+						else if(dist < (this.r + entities[idx].r) && dist > 2){
+							var moveX = (this.x - this.player.x) / dist;
+							var moveY = (this.y - this.player.y) / dist;
+							this.x += moveX;
+							this.y += moveY;
+						}	
 					}
 				};
 				entities.push(entSpawn);
 			};
 			
-			for(var i = 0; i < 300; i++){
-				spawnEntity((0.8*Math.random() + 0.1) * window.innerWidth, (0.8*Math.random() + 0.1) * window.innerHeight, newEnt);
+			for(var i = 0; i < 20; i++){
+				spawnEntity((0.4*Math.random() + 0.2) * window.innerWidth, (0.4*Math.random() + 0.2) * window.innerHeight, newEnt);
 			}
 			
 			newEnt.onTick = function(dt){
@@ -127,7 +130,7 @@
 				inputKeys[key] = KeyState.RELASE;
 			};
 
-			setInterval(function(){GameLoop(0.033);}, 33);
+			setInterval(function(){GameLoop(0.017);}, 17);
 		};
 
 		function GameLoop(dt){
@@ -151,7 +154,7 @@
 	</script>
 </head>
 <body style="background:#444;">
-	<canvas style="width:100%;height:100%;margin:-8px;" width="600px" height="800px" id="main-canvas">
+	<canvas style="width:100%;height:100%;margin:-8px;" id="main-canvas">
 		<p>Sorry, looks like your browser doesn't support canvas rendering.</p>
 	</cavas>
 </body>
