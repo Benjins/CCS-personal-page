@@ -70,28 +70,52 @@
 			var spawnEntity = function(x, y, player){
 				var entSpawn = new Entity(x, y, 16, "#ccc");
 				entSpawn.player = player;
+				entSpawn.runAway = false;
 				entSpawn.onTick = function(dt){
+					var playerDist = Math.sqrt(Math.pow(this.x - this.player.x, 2) + Math.pow(this.y - this.player.y, 2));
+					if(playerDist < 80){
+						this.runAway = true;
+					}
+					else if(playerDist > 120){
+						this.runAway = false;
+					}
+					
+					if(this.runAway){
+						//console.log("Running away");
+						var moveX = (this.x - this.player.x) / playerDist;
+						var moveY = (this.y - this.player.y) / playerDist;
+						this.x += moveX * dt * speed * 1.5;
+						this.y += moveY;
+						//return;
+					}
+					
 					for(var idx in entities){
-						var dist = Math.sqrt(Math.pow(this.x - entities[idx].x, 2) + Math.pow(this.y - entities[idx].y, 2));
-						if(entities[idx] === this.player && dist < 80){
-							var moveX = (this.x - this.player.x) / dist;
-							var moveY = (this.y - this.player.y) / dist;
-							this.x += moveX * speed * dt * 1.5;
-							this.y += moveY * speed * dt * 1.5;
+						if(entities[idx] === this || entities[idx] === this.player){
+							continue;
 						}
-						else if(dist < (this.r + entities[idx].r) && dist > 2){
-							var moveX = (this.x - this.player.x) / dist;
-							var moveY = (this.y - this.player.y) / dist;
+						var dist = Math.sqrt(Math.pow(this.x - entities[idx].x, 2) + Math.pow(this.y - entities[idx].y, 2));
+						if(dist < (this.r + entities[idx].r) && dist > 2){
+							var moveX = (this.x - entities[idx].x) / dist;
+							var moveY = (this.y - entities[idx].y) / dist;
 							this.x += moveX;
 							this.y += moveY;
+							//console.log("Move away");
 						}	
 					}
 				};
 				entities.push(entSpawn);
 			};
 			
+			/*
 			for(var i = 0; i < 20; i++){
 				spawnEntity((0.4*Math.random() + 0.2) * window.innerWidth, (0.4*Math.random() + 0.2) * window.innerHeight, newEnt);
+			}
+			*/
+			
+			if(typeof variable !== 'undefined'){
+				for(var idx in entityTable){
+					spawnEntity(entityTable[idx].x * window.innerWidth, entityTable[idx].y * window.innerHeight, newEnt);
+				}
 			}
 			
 			newEnt.onTick = function(dt){
