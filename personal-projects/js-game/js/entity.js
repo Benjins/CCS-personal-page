@@ -50,7 +50,21 @@ var Entity = function(x, y, radius, color){
 			}
 		}
 		
+		window.onbeforeunload = function(){
+			localStorage["audio"]  = document.getElementById("music").currentTime;
+			localStorage["volume"] = document.getElementById("music").volume;
+		};
+		
 		window.onload = function(){
+			if(localStorage["audio"]){
+				document.getElementById("music").currentTime = localStorage["audio"];
+			}
+			if(localStorage["volume"]){
+				document.getElementById("music").volume = localStorage["volume"];
+				if(localStorage["volume"] < 1){
+					document.getElementById("volume").style.background = "#faa";
+				}
+			}
 			canvas = document.getElementById("main-canvas");
 			context = canvas.getContext("2d");
 			if(context === null || context === undefined){
