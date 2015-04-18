@@ -94,7 +94,7 @@ var Entity = function(x, y, radius, color){
 						var moveX = (this.x - this.player.x) / playerDist;
 						var moveY = (this.y - this.player.y) / playerDist;
 						this.x += moveX * dt * speed * 1.5;
-						this.y += moveY;
+						this.y += moveY * dt * speed * 1.5;
 						//return;
 					}
 					
