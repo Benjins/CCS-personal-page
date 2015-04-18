@@ -9,8 +9,8 @@ var Entity = function(x, y, radius, color){
 			this.onMouse = function(x, y, btn){};
 			this.render = function(ctx){
 				ctx.beginPath();
-			 	ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
 			 	ctx.fillStyle = this.col;
+			 	ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
 			 	ctx.fill();
 			};
 		};		
@@ -58,7 +58,7 @@ var Entity = function(x, y, radius, color){
 				return;
 			}
 
-			var newEnt = new Entity(window.innerWidth/2, window.innerHeight - 60, 20, "#ee3388");
+			var newEnt = new Entity(window.innerWidth/2, window.innerHeight - 60, 20, "#e38");
 			newEnt.pressed = false;
 			var speed = 70;
 			
@@ -94,7 +94,6 @@ var Entity = function(x, y, radius, color){
 							var moveY = (this.y - entities[idx].y) / dist;
 							this.x += moveX;
 							this.y += moveY;
-							//console.log("Move away");
 						}	
 					}
 				};
@@ -127,25 +126,26 @@ var Entity = function(x, y, radius, color){
 			
 			if(typeof doorTable !== 'undefined'){
 				for(var idx in doorTable){
-					var blockEnt = new Entity(doorTable[idx].x * window.innerWidth, 
+					var doorEnt = new Entity(doorTable[idx].x * window.innerWidth, 
 											  doorTable[idx].y * window.innerHeight, 
 											  0, "#eee");
-					blockEnt.link = doorTable[idx].link;
-					blockEnt.player = newEnt;
-					blockEnt.w = 80;
-					blockEnt.h = 30;
-					blockEnt.render = function(ctx){
+					doorEnt.link = doorTable[idx].link;
+					doorEnt.player = newEnt;
+					doorEnt.w = 100;
+					doorEnt.h = 40;
+					doorEnt.render = function(ctx){
+						ctx.beginPath();
 						ctx.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
 						ctx.fillStyle = this.col;
 			 			ctx.fill();
 					};
-					blockEnt.onTick = function(dt){
-						if(Math.abs(this.x - this.player.x) < this.w && Math.abs(this.y - this.player.y) < this.h){
-							console.log("Link to next.");
+					doorEnt.onTick = function(dt){
+						if(Math.abs(this.x - this.player.x) < this.w/2 + this.player.r 
+						&& Math.abs(this.y - this.player.y) < this.h/2 + this.player.r){
 							window.location.href = this.link;
 						}
 					};
-					entities.push(blockEnt);
+					entities.push(doorEnt);
 					
 				}
 			}
