@@ -20,14 +20,37 @@ var changes = [ new Change("main.tex", 13, "{Intro}", "{\text Introduction}"),
 function CreateSnapshot(){
 	var descrVal = document.getElementById('description-field').value;
 	if(descrVal !== ""){
-		snapshots.push(new SnapShot(changes, new Date(), "Marek Potomek", descrVal));
+		var changesCopy = [];
+		for(var idx in changes){
+			changesCopy.push(changes[idx]);
+		}
+		snapshots.push(new SnapShot(changesCopy, new Date(), "Marek Potomek", descrVal));
+		changes.length = 0;
+		ReloadChangesUI();
+		document.getElementById('description-field').value = "";
+	}
+	else{
+		document.getElementById('snapshot-dialog').style.visibility = 'visible';
+		document.getElementById('description-field-modal').focus();
+	}
+}
+
+function ModalOnKey(evt){
+	if(evt.keyCode === 13){
+		DialogOK();
 	}
 }
 
 function DialogOK(){
 	var descrVal = document.getElementById('description-field-modal').value;
 	document.getElementById('snapshot-dialog').style.visibility = 'hidden';
-	snapshots.push(new SnapShot(changes, new Date(), "Marek Potomek", descrVal));
+	var changesCopy = [];
+		for(var idx in changes){
+			changesCopy.push(changes[idx]);
+		}
+	snapshots.push(new SnapShot(changesCopy, new Date(), "Marek Potomek", descrVal));
+	changes.length = 0;
+	ReloadChangesUI();
 }
 
 function DialogCancel(){

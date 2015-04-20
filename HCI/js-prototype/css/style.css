@@ -89,7 +89,7 @@ body,html{
 
 #create-snapshot button{
 	margin-top:30%;
-	margin-left:20%;
+	margin-left:16%;
 	font-size: 24px;
 }
 
@@ -97,6 +97,7 @@ body,html{
 	height:70%;
 	width:100%;
 	margin:auto;
+	margin-left: 12%;
 	background: #eee;
 }
 
@@ -197,6 +198,12 @@ body,html{
 	background: #ddd;
 	border: 1px solid #555;
 	overflow: hidden;
+	
+	transition: height 0.1s;
+}
+
+#snapshot-list .snapshot-elem:last-child{
+	height:200px;
 }
 
 #snapshot-list .snapshot-elem-select{
@@ -205,9 +212,5 @@ body,html{
 }
 
 #snapshot-list .snapshot-elem:hover{
-	height:250px;
-}
-
-#snapshot-list .snapshot-elem:last-child{
 	height:250px;
 }
