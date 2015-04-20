@@ -154,7 +154,30 @@ body,html{
 	border: 1px solid #222;
  }
  
+ #author-dialog {
+    visibility: hidden;
+    position: fixed;
+	background: rgba(200,200,200,0.5);
+    left: 0px;
+    top: 0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+    z-index: 10000;
+ }
+
+ #author-dialog #author-dialog-box{
+	width: 20%;
+	height: 20%;
+	position: absolute;
+    top: 45%;
+	left: 45%;
+	background: #999;
+	border: 1px solid #222;
+ }
  
+
+
  /*------History Tab-----------------------------------------------*/
 #snapshot-list{
 	margin-top: 8px;

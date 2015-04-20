@@ -1,5 +1,7 @@
 var snapshots = [];
 
+var author = "";
+
 var SnapShot = function(changes, date, author, descr){
 	this.changes = changes;
 	this.date = date;
@@ -14,7 +16,7 @@ var Change = function(file, line, before, after){
 	this.after = after;
 }
 
-var changes = [ new Change("main.tex", 13, "{Intro}", "{\text Introduction}"),
+var changes = [ new Change("main.tex", 13, "Intro", "  \\text Introduction"),
 				new Change("main.tex", 17, "{\em This is what we should be doing.}", "{\em This is not what we should not be doing.}")];
 
 function CreateSnapshot(){
@@ -28,7 +30,7 @@ function CreateSnapshot(){
 		for(var idx in changes){
 			changesCopy.push(changes[idx]);
 		}
-		snapshots.push(new SnapShot(changesCopy, new Date(), "Marek Potomek", descrVal));
+		snapshots.push(new SnapShot(changesCopy, new Date(), author, descrVal));
 		changes.length = 0;
 		ReloadChangesUI();
 		document.getElementById('description-field').value = "";
@@ -47,12 +49,15 @@ function ModalOnKey(evt){
 
 function DialogOK(){
 	var descrVal = document.getElementById('description-field-modal').value;
+	if(descrVal === ""){
+		return;
+	}
 	document.getElementById('snapshot-dialog').style.visibility = 'hidden';
 	var changesCopy = [];
 		for(var idx in changes){
 			changesCopy.push(changes[idx]);
 		}
-	snapshots.push(new SnapShot(changesCopy, new Date(), "Marek Potomek", descrVal));
+	snapshots.push(new SnapShot(changesCopy, new Date(), author, descrVal));
 	changes.length = 0;
 	ReloadChangesUI();
 	document.getElementById('description-field-modal').value = "";
@@ -97,10 +102,10 @@ function ReloadChangesUI(){
 			var changeText = document.createElement('p');
 			
 			changeAuthor.innerHTML = "<b>File:</b> " + change.file;
-			changeDate.innerHTML = "<b>Date:</b> " + change.date + "<br/>";
-			changeText.innerHTML = "<b>Changes:</b> &nbsp;&nbsp;" 
-										+ "<span style='background:#eaa;width:50%;overflow:hidden;'>" + change.before + " " + "</span>" 
-										+ "<span style='background:#aea;width:50%;overflow:hidden;'>" + " " + change.after  + "</span>";
+			changeDate.innerHTML = "<b>Line #:&nbsp;&nbsp;</b> " + change.line + "<br/>";
+			changeText.innerHTML = "<b>Changes:</b> &nbsp;&nbsp;<br/>" 
+										+ "&nbsp;<span style='background:#eaa;'>" + "-&nbsp;" + change.before + "</span>" 
+										+ "<span style='background:#aea;'>" + "<br/>+&nbsp;" + change.after  + "</span>";
 			
 			changeElem.appendChild(changeAuthor);
 			changeElem.appendChild(changeDate);
@@ -158,14 +163,11 @@ function ReloadHistoryUI(){
 			for(var i = 0; i < 3; i++){
 				if(i < snapShot.changes.length){
 					var snapShotChange = document.createElement('p');
-					snapShotChange.innerHTML = "<span style='background:#eaa;width:50%;overflow:hidden;'>" + snapShot.changes[i].before + " " + "</span>" 
-											 + "<span style='background:#aea;width:50%;overflow:hidden;'>" + " " + snapShot.changes[i].after + "</span>";
+					snapShotChange.innerHTML = "<span style='background:#eaa;width:50%;overflow:hidden;'>-" + snapShot.changes[i].before + " " + "</span>" 
+											 + "<br/><span style='background:#aea;width:50%;overflow:hidden;'>+" + snapShot.changes[i].after + "</span>";
 					snapShotElem.appendChild(snapShotChange);
 				}
 			}
-			
-			
-			
 			
 			snapshotList.appendChild(snapShotElem);
 		}
@@ -176,6 +178,13 @@ window.onload = function(){
 	if(localStorage.snapshots){
 		snapshots = JSON.parse(localStorage.snapshots);
 	}
+
+	if(localStorage.author){
+		author = localStorage.author;
+	}
+	else{
+		document.getElementById("author-dialog").style.visibility = "visible";
+	}
 	
 	ReloadHistoryUI();
 	ReloadChangesUI();
@@ -183,5 +192,30 @@ window.onload = function(){
 
 window.onunload = function(){
 	localStorage.snapshots = JSON.stringify(snapshots);
+	localStorage.author = author;
 }
 
+
+
+function AuthorOnKey(evt){
+	if(evt.keyCode === 13){
+		AuthorDialogOK();
+	}
+}
+
+function AuthorDialogOK(){
+	console.log("Dialog");
+	var descrVal = document.getElementById('author-field-modal').value;
+	if(descrVal === ""){
+		return;
+	}
+
+	author = descrVal;
+	document.getElementById('author-dialog').style.visibility = 'hidden';
+	document.getElementById('author-field-modal').value = "";
+}
+
+function AuthorDialogCancel(){
+	document.getElementById('author-dialog').style.visibility = 'hidden';
+	document.getElementById('author-field-modal').value = "";
+}

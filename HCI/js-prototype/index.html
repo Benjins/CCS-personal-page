@@ -7,8 +7,6 @@
 </head>
 <body>
 	<div id="left-bar">
-		<div id="project-explorer">
-		</div>
 		<div id="history-button">
 			<button onclick="GoToHistory()" >History</button>
 		</div>
@@ -18,17 +16,17 @@
 	<div id="centre-panel">
 		<p id="changes-title">Current changes:</p>
 		<br />
-		<div id="change-list">
+	-	<div id="change-list">
 		</div>
 	</div>
 	<div id="right-bar">
 		<div id="create-snapshot">
-			<button onclick="CreateSnapshot()">Create Snapshot</button>
+			<button onclick="CreateSnapshot()">Create Revision</button>
 		</div>
 		<div id="snapshot-description">
-			<p>Snapshot Description:</p>
+			<p>Revision Description:</p>
 			<br />
-			<input type="text" size="30" placeholder="Description..." id="description-field"/>
+			<input type="text" size="25" placeholder="Description..." id="description-field"/>
 		</div>
 	</div>
 	<div id="snapshot-dialog">
@@ -38,6 +36,15 @@
 			<br/>
 			<button style="font-size:16px;" onclick="DialogOK();">OK</button>
 			<button style="margin-left:12px;font-size:16px;" onclick="DialogCancel();">Cancel</button>
+		</div>
+	</div>
+	<div id="author-dialog">
+		<div id="author-dialog-box">
+			<p style="margin-top:12px;font-size:16px;">Please enter your name:</p>
+			<br />
+			<input style="margin-bottom:12px;" type="text" placeholder="..." onkeyup="AuthorOnKey(event);" id="author-field-modal"/>
+			<br />
+			<button style="font-size:16px;" onclick="AuthorDialogOK();">OK</button>
 		</div>
 	</div>
 </body>
