@@ -18,6 +18,10 @@ var changes = [ new Change("main.tex", 13, "{Intro}", "{\text Introduction}"),
 				new Change("main.tex", 17, "{\em This is what we should be doing.}", "{\em This is not what we should not be doing.}")];
 
 function CreateSnapshot(){
+	if(changes.length === 0){
+		alert("No changes have been made, snapshot is unnecessary.");
+		return;
+	}
 	var descrVal = document.getElementById('description-field').value;
 	if(descrVal !== ""){
 		var changesCopy = [];
@@ -51,10 +55,12 @@ function DialogOK(){
 	snapshots.push(new SnapShot(changesCopy, new Date(), "Marek Potomek", descrVal));
 	changes.length = 0;
 	ReloadChangesUI();
+	document.getElementById('description-field-modal').value = "";
 }
 
 function DialogCancel(){
 	document.getElementById('snapshot-dialog').style.visibility = 'hidden';
+	document.getElementById('description-field-modal').value = "";
 }
 
 function GoToHistory(){
@@ -70,6 +76,14 @@ function ReloadChangesUI(){
 	if(changeList){
 		while (changeList.firstChild) {
 			changeList.removeChild(changeList.firstChild);
+		}
+		if(changes.length === 0){
+			var noChanges = document.createElement('p');
+			noChanges.style.width = "20%";
+			noChanges.style.marginTop = "20%";
+			noChanges.style.marginLeft = "40%";
+			noChanges.innerHTML = "<span style='color:#555;'>There are no changes made yet.</span>"
+			changeList.appendChild(noChanges);
 		}
 		for(var idx = 0; idx < changes.length; idx++){
 			var change = changes[idx];
@@ -98,6 +112,15 @@ function ReloadChangesUI(){
 function ReloadHistoryUI(){
 	var snapshotList = document.getElementById("snapshot-list");
 	if(snapshotList){
+		console.log(snapshotList);
+		if(snapshots.length === 0){
+			var noChanges = document.createElement('p');
+			noChanges.style.width = "20%";
+			noChanges.style.marginTop = "20%";
+			noChanges.style.marginLeft = "40%";
+			noChanges.innerHTML = "<span style='color:#555;'>There have been no snapshots yet.</span>"
+			snapshotList.appendChild(noChanges);
+		}
 		for(var idx in snapshots){
 			var snapShot = snapshots[idx];
 			var snapShotElem = document.createElement('div');
