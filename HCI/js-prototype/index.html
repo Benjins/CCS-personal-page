@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Paper VC</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="js/papervc.js"></script>
+</head>
+<body>
+	<div id="left-bar">
+		<div id="project-explorer">
+		</div>
+		<div id="history-button">
+			<button onclick="GoToHistory()" >History</button>
+		</div>
+	</div>
+	<div style="clear:both;display:none;">
+	</div>
+	<div id="centre-panel">
+		<p id="changes-title">Current changes:</p>
+		<br />
+		<div id="change-list">
+		</div>
+	</div>
+	<div id="right-bar">
+		<div id="create-snapshot">
+			<button onclick="document.getElementById('snapshot-dialog').style.visibility = 'visible';">Create Snapshot</button>
+		</div>
+		<div id="snapshot-description">
+			<p>Description:</p>
+			<br />
+			<br />
+			<input type="text" placeholder="Description..." id="description-field"/>
+		</div>
+	</div>
+	<div id="snapshot-dialog">
+		<div id="dialog-box">
+			<p style="margin-top:12px;font-size:16px;">Please enter a description:</p><br />
+			<input style="margin-bottom:12px;" type="text" placeholder="Description..." id="description-field-modal"/>
+			<br/>
+			<button style="font-size:16px;" onclick="DialogOK();">OK</button>
+			<button style="margin-left:12px;font-size:16px;" onclick="DialogCancel();">Cancel</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+body,html{
+	height:100%;
+}
+
+* {
+  -webkit-box-sizing: border-box; /* Safari 3.0 - 5.0, Chrome 1 - 9, Android 2.1 - 3.x */
+  -moz-box-sizing: border-box;    /* Firefox 1 - 28 */
+  box-sizing: border-box;         /* Safari 5.1+, Chrome 10+, Firefox 29+, Opera 7+, IE 8+, Android 4.0+, iOS any */
+  margin: -4px;
+}
+
+#left-bar{
+	width:20%;
+	height:100%;
+	background:#eee;
+	display: inline-block;
+	overflow:auto;
+	border: 1px solid #222;
+}
+
+#right-bar{
+	width:20%;
+	height:100%;
+	background:#eee;
+	display: inline-block;
+	overflow:hidden;
+	border: 1px solid #222;
+}
+
+#centre-panel{
+	width:60%;
+	height:100%;
+	background:#eee;
+	display: inline-block;
+	overflow:hidden;
+	border: 1px solid #222;
+}
+
+#change-list{
+	overflow: auto;
+}
+
+#change-list .change-elem{
+	background: #ccc;
+	border: 1px dashed #222;
+	padding: 8px;
+	width: 90%;
+	margin-top: 2px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+}
+
+#change-list .change-elem:hover{
+	background: #ddd;
+	border: 1px dashed #222;
+	padding: 8px;
+	width: 95%;
+	margin-top: 2px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+}
+
+#project-explorer{
+	height:40%;
+	width:100%;
+	margin:auto;
+	background: #eee;
+}
+
+#history-button{
+	height:60%;
+	width:100%;
+	margin:auto;
+	background: #eee;
+}
+
+#history-button button{
+	margin-top:20%;
+	margin-left:40%;
+	font-size: 24px;
+}
+
+#create-snapshot{
+	height:20%;
+	width:100%;
+	margin:auto;
+	background: #eee;
+}
+
+#create-snapshot button{
+	margin-top:30%;
+	margin-left:20%;
+	font-size: 24px;
+}
+
+#snapshot-description{
+	height:70%;
+	width:100%;
+	margin:auto;
+	background: #eee;
+}
+
+#snapshot-description p{
+	margin-left: 10px;
+	font-size: 20px; 
+} 
+
+#snapshot-description input{
+	margin-left: 10px;
+}
+
+#change-list{
+	margin-top: 20px;
+	margin-left: -2px;
+	width:100%;
+	height:80%;
+	background:#eee;
+	border: 4px solid #333;
+}
+
+#change-list p{
+	margin-top: 8px;
+	margin-left: 8px;
+	font-size: 16px;
+}
+
+#centre-panel p#changes-title{
+	margin-top: 30px;
+	margin-left: 30px;
+	font-size: 20px;
+}
+
+#snapshot-dialog {
+    visibility: hidden;
+    position: fixed;
+	background: rgba(200,200,200,0.5);
+    left: 0px;
+    top: 0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+    z-index: 10000;
+ }
+
+ #snapshot-dialog #dialog-box{
+	width: 20%;
+	height: 20%;
+	position: absolute;
+    top: 45%;
+	left: 45%;
+	background: #999;
+	border: 1px solid #222;
+ }
+ 
+ 
+ /*------History Tab-----------------------------------------------*/
+#snapshot-list{
+	margin-top: 8px;
+	margin-left: 8px;
+	width:70%;
+	height:100%;
+	background:#ccc;
+	display: inline-block;
+	overflow:auto;
+}
+
+#hist-right-bar{
+	width:30%;
+	height:100%;
+	background:#eee;
+	display: inline-block;
+	overflow:auto;
+}
+
+#hist-right-bar button{
+	margin-top: 40px;
+	margin-left: 40%;
+	font-size: 20px;
+}
+
+#hist-right-bar #descr-info{
+	margin-top: 40px;
+	width:100%;
+	height: 200px;
+	background:#efa;
+}
+
+#snapshot-list .snapshot-elem{
+	padding-top: 16px;
+	padding-left: 16px;
+	font-size: 18px;
+	line-height: 180%;
+	margin-top: 0;
+	width: 80%;
+	border-radius: 8px;
+	height:50px;
+	background: #ddd;
+	border: 1px solid #555;
+	overflow: hidden;
+}
+
+#snapshot-list .snapshot-elem-select{
+	height:250px;
+	border: 3px solid #333;
+}
+
+#snapshot-list .snapshot-elem:hover{
+	height:250px;
+}
+
+#snapshot-list .snapshot-elem:last-child{
+	height:250px;
+}

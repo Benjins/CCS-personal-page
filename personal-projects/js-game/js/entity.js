@@ -132,7 +132,7 @@ var Entity = function(x, y, radius, color){
 				for(var idx in blockTable){
 					var blockEnt = new Entity(blockTable[idx].x * window.innerWidth, 
 											  blockTable[idx].y * window.innerHeight, 
-											  blockTable[idx].r, "#888");
+											  blockTable[idx].r, "rgba(120, 120, 120, 1.0)");
 					entities.push(blockEnt);
 					
 				}
@@ -148,10 +148,11 @@ var Entity = function(x, y, radius, color){
 					doorEnt.w = 100;
 					doorEnt.h = 40;
 					doorEnt.render = function(ctx){
-						ctx.beginPath();
-						ctx.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
-						ctx.fillStyle = this.col;
-			 			ctx.fill();
+						//ctx.beginPath();
+						//ctx.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
+						ctx.drawImage(document.getElementById("door"), this.x-this.w/2, this.y-this.h/2, this.w, this.h);
+						//ctx.fillStyle = this.col;
+			 			//ctx.fill();
 					};
 					doorEnt.onTick = function(dt){
 						if(Math.abs(this.x - this.player.x) < this.w/2 + this.player.r 
