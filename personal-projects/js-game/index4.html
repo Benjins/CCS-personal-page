@@ -1,0 +1,52 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Interactive Final</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<script type="text/javascript">
+	var playerStart = {x:0.15, y:0.5};
+	var entityTable = [{x:0.48,y:0.58}, {x:0.45,y:0.47}, {x:0.43,y:0.47}, {x:0.47,y:0.55}];
+	var blockTable = [];
+	var doorTable = [{x:0.01, y:0.5, w:40, h:100, link:"index3.html"}];
+	</script>
+	<script src="js/entity.js"></script>
+	<script src="js/volume.js"></script>
+	<script type="text/javascript">
+	var friends = [];
+	friends.push(new Entity(window.innerWidth*0.85, window.innerHeight * 0.5,  20, "rgba(240, 48, 128, 1.0)"));
+	friends.push(new Entity(window.innerWidth*0.82, window.innerHeight * 0.46, 20, "rgba(240, 48, 128, 1.0)"));
+	friends.push(new Entity(window.innerWidth*0.82, window.innerHeight * 0.54, 20, "rgba(240, 48, 128, 1.0)"));
+
+	for(var idx in friends){
+		friends[idx].player = window.player;
+		friends[idx].fade = false;
+		friends[idx].alpha = 1;
+		friends[idx].onTick = function(dt){
+			if(window.player.x > window.innerWidth * 0.6){
+				this.fade = true;
+			}
+
+			if(this.fade){
+				this.alpha -= dt/4;
+				this.col = "rgba(240, 48, 128, " + this.alpha + ")"
+			}
+		}
+		entities.push(friends[idx]);
+	}
+	</script>
+</head>
+<body style="background:#444;">
+	<canvas style="width:100%;height:100%;margin:-8px;" id="main-canvas">
+		<p>Sorry, looks like your browser doesn't support canvas rendering.</p>
+	</canvas>
+	<div style="display:none;">
+		<img id="door" src="img/door.gif" width="300" height="227">
+	</div>
+	<audio id="music" src="audio/Mesmerize.mp3" loop="true" autoplay="true"></audio>
+	<div id="volume-parent">
+		<div id="volume" onclick="VolumeOnClick(this)">
+		</div>
+	</div>
+</body>
+</html>

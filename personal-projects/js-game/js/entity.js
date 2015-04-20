@@ -73,6 +73,11 @@ var Entity = function(x, y, radius, color){
 			}
 
 			var newEnt = new Entity(window.innerWidth/2, window.innerHeight - 60, 20, "#e38");
+			window.player = newEnt;
+			if(typeof playerStart !== 'undefined'){
+				newEnt.x = window.innerWidth  * playerStart.x;
+				newEnt.y = window.innerHeight * playerStart.y;
+			}
 			newEnt.pressed = false;
 			var speed = 70;
 			
@@ -85,7 +90,7 @@ var Entity = function(x, y, radius, color){
 					if(playerDist < 80){
 						this.runAway = true;
 					}
-					else if(playerDist > 120){
+					else if(playerDist > 140){
 						this.runAway = false;
 					}
 					
@@ -134,7 +139,6 @@ var Entity = function(x, y, radius, color){
 											  blockTable[idx].y * window.innerHeight, 
 											  blockTable[idx].r, "rgba(120, 120, 120, 1.0)");
 					entities.push(blockEnt);
-					
 				}
 			}
 			
@@ -147,6 +151,15 @@ var Entity = function(x, y, radius, color){
 					doorEnt.player = newEnt;
 					doorEnt.w = 100;
 					doorEnt.h = 40;
+
+					if(doorTable[idx].w){
+						doorEnt.w = doorTable[idx].w;
+					}
+
+					if(doorTable[idx].h){
+						doorEnt.h = doorTable[idx].h;
+					}
+
 					doorEnt.render = function(ctx){
 						//ctx.beginPath();
 						//ctx.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
@@ -178,15 +191,22 @@ var Entity = function(x, y, radius, color){
 				if(OnKey("D") || OnKey("'")){
 					this.x += dt * speed;
 				}
-				
-				if(OnKey("T")){
-					if(!pressed){
-						spawnEntity(this.x, this.y+20, this);
-						pressed = true;
+
+				if(typeof(blockTable) !== 'undefined'){
+					for(var idx in blockTable){
+						var dist = Math.sqrt( Math.pow(blockTable[idx].x * window.innerWidth  - this.x, 2)
+											+ Math.pow(blockTable[idx].y * window.innerHeight - this.y, 2));
+
+						if(dist < blockTable[idx].r + this.r){
+							var xMov = this.x - blockTable[idx].x * window.innerWidth;
+							var yMov = this.y - blockTable[idx].y * window.innerHeight;
+							var projX = xMov / dist * (blockTable[idx].r + this.r);
+							var projY = yMov / dist * (blockTable[idx].r + this.r);
+
+							this.x = blockTable[idx].x * window.innerWidth  + projX;
+							this.y = blockTable[idx].y * window.innerHeight + projY;
+						}
 					}
-				}
-				else{
-					pressed = false;
 				}
 			};
 			entities.push(newEnt);
