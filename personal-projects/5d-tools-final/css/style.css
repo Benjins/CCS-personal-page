@@ -1,0 +1,101 @@
+body, html{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
+}
+
+#top-row{
+	width: 95%;
+	height: 90%;
+	background: #ccc;
+	height: 200px;
+}
+
+#prof-pic{
+	background: #666;
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#contact-info{
+	background: #888;
+	height: 200px;
+	width: 40%;
+	margin-left: 50px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#social-links{
+	height: 60px;
+	margin-left: 15%;
+	margin-top: 70px;
+	width: 15%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#social-linkedin{
+	background: url('../img/linkedin.png');
+	margin-top: 10%;
+	height: 32px;
+	width: 32px;
+	background-size: 32px 32px;
+	display: inline-block;
+}
+
+#social-twitter{
+	background: url('../img/twitter.png');
+	height: 32px;
+	width: 32px;
+	background-size: 32px 32px;
+	display: inline-block;
+}
+
+#social-github{
+	background: url('../img/github.png');
+	height: 32px;
+	width: 32px;
+	background-size: 32px 32px;
+	display: inline-block;
+}
+
+#mid-row{
+	width: 90%;
+	height: 60%;
+	background: #999;
+}
+
+#mid-row-one{
+	width: 45%;
+	height: 60%;
+	background: #666;
+	display: inline-block;
+	margin-top: 20px;
+	vertical-align: top;
+}
+
+#mid-row-two{
+	width: 50%;
+	height: 60%;
+	display: inline-block;
+	margin-top: 20px;
+	vertical-align: top;
+}
+
+#footer-container{
+	width: 90%;
+	height: 90%;
+	background: #aaa;
+	height: 15%;
+}
+
+#footer{
+	width: 20%;
+	height: 50%;
+	background: #777;
+	margin: auto;
+}
