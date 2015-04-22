@@ -62,7 +62,7 @@ var Entity = function(x, y, radius, color){
 			if(localStorage["volume"]){
 				document.getElementById("music").volume = localStorage["volume"];
 				if(localStorage["volume"] < 1){
-					document.getElementById("volume").style.background = "#faa";
+					document.getElementById("volume").style.background = "url('img/volume-button-off.gif')";
 				}
 			}
 			canvas = document.getElementById("main-canvas");

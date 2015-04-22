@@ -11,11 +11,11 @@ function VolumeOnClick(vlm){
 
 	toggle = !toggle;
 	if(toggle){
-		vlm.style.background = "#ddd";
+		document.getElementById("volume").style.background = "url('img/volume-button-on.gif')";
 		musicPlayer.volume = 1;
 	}
 	else{
-		vlm.style.background = "#faa";
+		document.getElementById("volume").style.background = "url('img/volume-button-off.gif')";
 		musicPlayer.volume = 0;
 	}
 }

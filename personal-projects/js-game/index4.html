@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 	<script type="text/javascript">
 	var playerStart = {x:0.15, y:0.5};
-	var entityTable = [{x:0.48,y:0.58}, {x:0.45,y:0.47}, {x:0.43,y:0.47}, {x:0.47,y:0.55}];
+	var entityTable = [{x:0.46,y:0.57}, {x:0.45,y:0.47}, {x:0.42,y:0.48}, {x:0.47,y:0.53}];
 	var blockTable = [];
 	var doorTable = [{x:0.01, y:0.5, w:40, h:100, link:"index3.html"}];
 	</script>
@@ -30,6 +30,10 @@
 			if(this.fade){
 				this.alpha -= dt/4;
 				this.col = "rgba(240, 48, 128, " + this.alpha + ")"
+				if(this.alpha <= 0){
+					setTimeout(function(){window.location.href = "index.html";}, 6000);
+					this.fade = false;
+				}
 			}
 		}
 		entities.push(friends[idx]);

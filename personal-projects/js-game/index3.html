@@ -5,11 +5,11 @@
 	<title>Interactive Final</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 	<script>
-	var playerStart = {x:0.15, y:0.51};
+	var playerStart = {x:0.15, y:0.51 + Math.random() * 0.02 - 0.01};
 	var entityTable = [];
 	for(var i = 0.2; i < 0.8; i += 0.04){
-		entityTable.push({x:i, y:0.46});
-		entityTable.push({x:i, y:0.54});
+		entityTable.push({x:i, y:0.46 + Math.random() * 0.02 - 0.01});
+		entityTable.push({x:i, y:0.54 + Math.random() * 0.02 - 0.01});
 	}
 	var blockTable = [];
 	var doorTable = [{x:0.01, y:0.5, w:40, h:100, link:"index2.html"}, {x:0.99, y:0.5, w:40, h:100, link:"index4.html"}];
