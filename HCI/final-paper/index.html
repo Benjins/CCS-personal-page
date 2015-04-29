@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Final Paper</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<style>
+#main-container{
+	width: 90%;
+	max-width: 1000px;
+	font-size: 1.1em;
+}
+
+.images-container img{
+	display:inline-block;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+@media screen and (max-width: 670px) {
+	#main-container{
+		width: 100%;
+		padding: 0px 6px;
+		max-width: 1000px;
+		font-family: 'Open Sans' serif;
+	}
+}
+
+</style>
+</head>
+<body>
+<div id="main-container">
+<h3>PaperVC Final Report</h3>
+<h4>By Benji Smith</h4>
+<p>For many academic paper writers, keeping track of different versions of documents is necessary, but difficult.  Some manually keep different save files, some use plugins for text editors, and some use dedicated version control software.  However, existing version control software is tailored for developers, and has large, unruly interfaces with complex backends.  For non-code writing, most of these features are unnecessary.</p>
+
+<p>In response to this issue, we decided to develop PaperVC, a version control software for academic paper writers.  The interface was designed to create a more approachable and understandable front-end for an existing version control backend (for this, we assumed Git or something similar).  We selected a subset of operations necessary, determined a more reasonable metaphor for interaction, and created a graphical interface to facilitate easier understanding of the software.</p>
+
+<p>Our target users would be those who work in academic paper writing, preferably who want to use some form of version control, but who haven't yet invested heavily in a more complex alternative.  Most of these people would be grad students, post-docs, and researchers, however anyone involved in the writing/editing process with access to the version control would be a potential user.</p>
+
+<p>Our research question was the following: Given a simplified interface as in PaperVC, will users find it more understandable than their current approach?</p>   
+
+<p>The main metaphor for the software was that of a filing cabinet filled with old revisions.  Creating a new revision was like creating a copy of the current work, and putting it in the cabinet.  Going through the history was the same as filing through the cabinet.  This metaphor was selected because it would be familiar to those working with paper-writing, and it has a history a a traditional method of version control.</p>
+
+<p>A paper prototype was constructed with the basic skeleton of the interface: saving revisions with descriptions, moving between pages, and displaying the history.  The basic layout had one page for current changes, and one for the history of the project.</p>
+<div class="images-container">
+	<img alt="Paper Prototype History layout" width="400px" src="../p5/img/prot1a.jpg"/>
+	<img alt="Paper Prototype Current Changes layout" width="400px" src="../p5/img/prot2a.jpg"/>
+</div>
+<p>The paper prototype was put through user evaluation by 4 participants (20-35 y.o, 2M/2F).  Three of these worked in academic paper writing before, two of them for substantial time.</p>
+
+<p>Most of the user feedback from our paper prototype involved the display of data.  All of the user tasks were completed relatively quickly by the participants, however many of them expressed doubts regarding how user feedback was given.  Specifically, feedback for Current Changes, which shows outstanding differences in the project files from the latest revision.  One more change that came out of the paper prototype was renaming of "snapshot" to "revision."  Although snapshot has some of the right connotations, it was simply too foreign of a term, and ultimately revision meshed better with the current jargon.</p>
+
+<p>Originally, a Java prototype was created based on the paper prototype.  This added functionality such as hover effects, a project explorer, and an expansion on the history panel.  The prototype was in a working state, however its interface had flaws which proved to be distracting to potential participants.  As such, the Java prototype was eschewed in favour of a web-app version done in HTML/CSS/JS.  The web version had a more stable user interface, though it was missing some of the desktop-only features (e.g. the Project Explorer).  However, the web version was the one tested on users, and so its data is the one being evaluated.</p>
+
+<p>The web version also fakes the backend better, so when users perform an action, the consequences are seen in other parts of the program.  This was the main concern regarding the Java prototype.</p>
+
+<div class="images-container">
+	<img alt="Web Prototype Current Changes layout" width="400px" src="img/js-prot-01.jpg"/>
+	<img alt="Web Prototype History layout" width="400px" src="img/js-prot-02.jpg"/>
+</div>
+
+<p>Once the digital prototypes were in a complete enough form, another evaluation was done using them.  The same tasks were given, which are as follows:</p>
+<ul>
+  <li>Find out what outstanding changes there are.</li>
+  <li>Create a new revision </li>
+  <li>Find out what was changed in the past 3 revisions</li>
+</ul>
+
+<p>For the concluding study, we had 7 students and 2 professors as participants.  The students were aged 19 - 22, 5M/2F, and all had experience with some version control software.  Both professors had written several academic papers.  The professor were 31F (hereafter called Professor A) and 32M (hereafter called Professor B).  Professor A mostly used text editor plugins for version control (e.g. Microsoft Word's Track Changes).  Professor B keeps different saves of his drafts, and manually keeps track of them.</p>
+
+<p>The 7 students were given an overview of the software, and a basic walkthrough to become familiar with it.  They were then asked to perform the tasks, and given a questionnaire as a follow-up.  Here are the questions and responses:</p>
+
+<ul>
+ <li>Was the experience you had with this software faster than your normal version control routine? (1: Much slower .. 7: Much faster)
+   <ul>Responses: {2, 2, 3, 4, 3, 2, 1} Mean: 2.4, Median: 2</ul></li>
+ <li>Was the experience you had with this software smoother than your normal routine? (1: Much more jarring .. 7: Much smoother)
+   <ul>Responses: {3, 4, 3, 3, 3, 4, 3} Mean: 3.3, Median: 3</ul></li>
+ <li>Do you think you'd be prone to make fewer errors with this software than with your normal routine? (1: Many fewer errors .. 7:Many more errors)
+   <ul>Responses: {3, 2, 3, 2, 3, 2, 3} Mean: 2.6, Median: 3</ul></li>
+ <li>Would you recommend this software to someone with little experience in version control software? (1: Not at all .. 7: Definitely)
+   <ul>Responses: {5, 4, 6, 4, 3, 3, 3} Mean: 4, Median: 4</ul></li>
+</ul>
+
+<p>The two professors were not given any questionnaire.  Instead, we had them use the software, and then interviewed them to find out their thoughts.  By far the biggest concern they had was the lack of support for collaboration.  In other words, the change list was local and couldn't be shared among co-authors, one of the main reasons for using a version control system.  Another issue raised was that again, user feedback as to the contents of changes should be streamlined.  It was difficult to tell quickly what was changed in each file.</p>
+
+<p>However, the two professors did praise the simplicity of the interface, and felt that the folder layout for history was useful for when histories got to be too long, but felt that scanning through it should be made easier.</p>
+
+<p>None of the participants used any shortcuts.  Not just keyboard shortcuts, but for instance entering the revision description before hitting "Create Revision" will use the entered description, and avoid the description dialog altogether.  However, given the short duration of these studies, it's understandable that some of the more advanced features weren't used.</p>
+
+<p>Ultimately, the interface seems to be a decent foundation.  By stripping away all but the bare essentials, we discovered that some of the features really are needed.  We also showed an alternative way of displaying version control history, which was well-received by the potential users.  There were several faults with the interface, but it functioned well as an alpha prototype.</p>
+</div>
+</body>
+</html>
+
