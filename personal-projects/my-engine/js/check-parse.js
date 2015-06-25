@@ -15,6 +15,7 @@ function GetAllErrorsFromFile(fileName){
 	request.onreadystatechange = function(){
 		if (request.readyState===4 && request.status===200){
 			var errors = GetErrorsFromContents(request.responseText);
+			console.log(errors);
 
 			var container = document.getElementById("error-container");
 			for(var idx in errors){
@@ -26,6 +27,8 @@ function GetAllErrorsFromFile(fileName){
 			console.log("GetAllErrorsFromFile: Error, server responded with error code: '" + request.status + "'.");
 		}
 	};
+
+	request.send();
 }
 
 function GetErrorsFromContents(fileContents){
