@@ -1,148 +1,148 @@
-src/AABB.cpp:8,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:13,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:14,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:18,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:19,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:72,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AABB.cpp:73,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
-src/AudioSystem.cpp:27,error,resourceLeak,Resource leak: wavFile
-src/AudioSystem.cpp:66,error,mismatchAllocDealloc,Mismatching allocation and deallocation: listData
-src/AudioSystem.cpp:99,error,memleak,Memory leak: dataBuffer
-src/Collider.cpp:100,warning,nullPointer,Possible null pointer dereference: col2 - otherwise it is redundant to check it against null.
-src/Collider.cpp:310,style,unassignedVariable,Variable 'x' is not assigned a value.
-src/Collider.cpp:311,style,unassignedVariable,Variable 'x' is not assigned a value.
-src/Collider.cpp:312,style,unassignedVariable,Variable 'x' is not assigned a value.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::camera' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::deltaTime' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::physicsSim' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::prevX' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::prevY' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::buttonDown' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::xRot' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::yRot' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::running' is not initialized in the constructor.
-header/int/Scene.h:70,warning,uninitMemberVar,Member variable 'Scene::rb' is not initialized in the constructor.
-src/Collider.cpp:27,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Collider.cpp:28,performance,useInitializationList,Variable 'size' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Collider.cpp:59,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Component.cpp:5,warning,uninitMemberVar,Member variable 'Component::gameObject' is not initialized in the constructor.
-header/int/Animation.h:10,style,variableHidingEnum,Variable 'Vector3' hides enumerator with same name
-src/EditorScene.cpp:125,performance,redundantAssignment,Variable 'divisor' is reassigned a value before the old one has been used.
-src/EditorScene.cpp:259,style,unreadVariable,Variable 'deltaX' is assigned a value that is never used.
-src/EditorScene.cpp:260,style,unreadVariable,Variable 'deltaY' is assigned a value that is never used.
-src/EditorScene.cpp:18,warning,uninitMemberVar,Member variable 'EditorScene::sceneCamera' is not initialized in the constructor.
-header/int/UserComps.h:430,warning,uninitMemberVar,Member variable 'FireGun::input' is not initialized in the constructor.
-header/int/UserComps.h:430,warning,uninitMemberVar,Member variable 'FireGun::physicsSim' is not initialized in the constructor.
-header/int/UserComps.h:430,warning,uninitMemberVar,Member variable 'FireGun::camera' is not initialized in the constructor.
-header/int/UserComps.h:506,warning,uninitMemberVar,Member variable 'EnemyComp::physics' is not initialized in the constructor.
-header/int/UserComps.h:506,warning,uninitMemberVar,Member variable 'EnemyComp::pathing' is not initialized in the constructor.
-header/int/UserComps.h:506,warning,uninitMemberVar,Member variable 'EnemyComp::player' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::input' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::camera' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::physics' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::slider' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::healthBar' is not initialized in the constructor.
-header/int/UserComps.h:659,warning,uninitMemberVar,Member variable 'CameraControl::audioComp' is not initialized in the constructor.
-header/int/LoadingUtilities.h:17,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/LoadingUtilities.h:18,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/LoadingUtilities.h:19,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/3DUtilities.h:10,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:52,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:231,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:232,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:233,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:493,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:494,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:562,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:581,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:601,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:615,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:724,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:770,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/UserComps.h:771,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/Animation.h:59,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/Animation.h:69,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/Animation.h:70,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-header/int/Animation.h:25,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/FontBMPMaker.cpp:117,style,variableScope,The scope of the variable 'uvBuffer' can be reduced.
-src/FontBMPMaker.cpp:146,style,unreadVariable,Variable 'versionNumber' is assigned a value that is never used.
-src/FontBMPMaker.cpp:171,style,unreadVariable,Variable 'pix' is assigned a value that is never used.
-src/FontBMPMaker.cpp:180,style,unreadVariable,Variable 'x' is assigned a value that is never used.
-src/GameObject.cpp:17,warning,uninitMemberVar,Member variable 'GameObject::_id' is not initialized in the constructor.
-src/GameObject.cpp:24,warning,uninitMemberVar,Member variable 'GameObject::_id' is not initialized in the constructor.
-src/GameObject.cpp:24,warning,uninitMemberVar,Member variable 'GameObject::material' is not initialized in the constructor.
-src/GameObject.cpp:24,warning,uninitMemberVar,Member variable 'GameObject::mesh' is not initialized in the constructor.
-src/GuiElement.cpp:16,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/GuiElement.cpp:44,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/GuiElement.cpp:51,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/Input.cpp:6,error,bufferAccessOutOfBounds,Buffer is accessed out of bounds: keys
-src/Input.cpp:4,warning,uninitMemberVar,Member variable 'Input::mouseLeft' is not initialized in the constructor.
-src/Input.cpp:4,warning,uninitMemberVar,Member variable 'Input::mouseMiddle' is not initialized in the constructor.
-src/Input.cpp:4,warning,uninitMemberVar,Member variable 'Input::mouseRight' is not initialized in the constructor.
-src/Input.cpp:4,warning,uninitMemberVar,Member variable 'Input::mouseX' is not initialized in the constructor.
-src/Input.cpp:4,warning,uninitMemberVar,Member variable 'Input::mouseY' is not initialized in the constructor.
-src/Material.cpp:23,performance,useInitializationList,Variable 'matName' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:11,performance,useInitializationList,Variable 'uv2' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:18,performance,useInitializationList,Variable 'uv2' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:22,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:27,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:31,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:32,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:33,performance,useInitializationList,Variable 'vertices' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:34,performance,useInitializationList,Variable 'faces' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:42,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:43,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:59,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:60,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:61,performance,useInitializationList,Variable 'vertices' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Model.cpp:62,performance,useInitializationList,Variable 'faces' is assigned in constructor body. Consider performing initialization in initialization list.
-src/RaycastHit.cpp:4,performance,useInitializationList,Variable 'worldPos' is assigned in constructor body. Consider performing initialization in initialization list.
-header/int/ResourceManager.h:11,style,noCopyConstructor,'struct MaterialManager' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
-src/Scene.cpp:191,performance,redundantAssignment,Variable 'divisor' is reassigned a value before the old one has been used.
-src/Scene.cpp:205,style,unreadVariable,Variable 'child' is assigned a value that is never used.
-src/Scene.cpp:210,style,unreadVariable,Variable 'sliderTime' is assigned a value that is never used.
-src/Scene.cpp:244,style,unreadVariable,Variable 'y' is assigned a value that is never used.
-src/Scene.cpp:32,warning,uninitMemberVar,Member variable 'Scene::deltaTime' is not initialized in the constructor.
-src/Scene.cpp:32,warning,uninitMemberVar,Member variable 'Scene::prevX' is not initialized in the constructor.
-src/Scene.cpp:32,warning,uninitMemberVar,Member variable 'Scene::prevY' is not initialized in the constructor.
-src/Scene.cpp:32,warning,uninitMemberVar,Member variable 'Scene::buttonDown' is not initialized in the constructor.
-src/Scene.cpp:32,warning,uninitMemberVar,Member variable 'Scene::running' is not initialized in the constructor.
-src/Scene.cpp:33,performance,useInitializationList,Variable 'drawCalls' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Scene.cpp:262,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:234,style,variableScope,The scope of the variable 'instance' can be reduced.
-src/SceneLoading.cpp:250,style,unreadVariable,Variable 'instance' is assigned a value that is never used.
-src/SceneLoading.cpp:350,style,unreadVariable,Variable 'bgn' is assigned a value that is never used.
-src/SceneLoading.cpp:84,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:93,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:101,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:169,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:495,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/SceneLoading.cpp:496,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
-src/Texture.cpp:55,warning,uninitMemberVar,Member variable 'Texture::width' is not initialized in the constructor.
-src/Texture.cpp:55,warning,uninitMemberVar,Member variable 'Texture::height' is not initialized in the constructor.
-header/int/Texture.h:16,style,noCopyConstructor,'struct Texture' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
-src/Transform.cpp:6,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Transform.cpp:15,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Transform.cpp:16,performance,useInitializationList,Variable 'rotation' is assigned in constructor body. Consider performing initialization in initialization list.
-src/Transform.cpp:17,performance,useInitializationList,Variable 'scale' is assigned in constructor body. Consider performing initialization in initialization list.
-src/simple-xml.cpp:112,warning,StlMissingComparison,Missing bounds check for extra iterator increment in loop.
-src/RigidBody.cpp:23,style,unusedFunction,The function 'AddForce' is never used.
-src/PhysicsSim.cpp:15,style,unusedFunction,The function 'AddStaticCollider' is never used.
-src/AABB.cpp:81,style,unusedFunction,The function 'CollideWith' is never used.
-src/FontBMPMaker.cpp:24,style,unusedFunction,The function 'ConvertTrueTypeToFUV' is never used.
-src/FontBMPMaker.cpp:89,style,unusedFunction,The function 'ExportFUV' is never used.
-src/Collider.cpp:31,style,unusedFunction,The function 'GetBounds' is never used.
-src/Transform.cpp:153,style,unusedFunction,The function 'GetInverse' is never used.
-src/Texture.cpp:126,style,unusedFunction,The function 'GetPixel' is never used.
-src/ResourceManager.cpp:63,style,unusedFunction,The function 'GetTextureByFileName' is never used.
-src/Mat4.cpp:63,style,unusedFunction,The function 'GetTranspose' is never used.
-src/Scene.cpp:232,style,unusedFunction,The function 'PhysicsUpdate' is never used.
-src/Texture.cpp:145,style,unusedFunction,The function 'Release' is never used.
-src/Scene.cpp:356,style,unusedFunction,The function 'RenderScene' is never used.
-src/Material.cpp:146,style,unusedFunction,The function 'SetMainTexture' is never used.
-src/Material.cpp:142,style,unusedFunction,The function 'SetTextureUniform' is never used.
-src/FontBMPMaker.cpp:186,style,unusedFunction,The function 'Swap2Bytes' is never used.
-src/FontBMPMaker.cpp:194,style,unusedFunction,The function 'Swap4Bytes' is never used.
-src/RigidBody.cpp:27,style,unusedFunction,The function 'Translate' is never used.
-src/Scene.cpp:183,style,unusedFunction,The function 'UpdateVertexBuffer' is never used.
-:,information,missingInclude,Cppcheck cannot find all the include files (use --check-config for details)
+src/AABB.cpp,8,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,13,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,14,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,18,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,19,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,72,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AABB.cpp,73,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.
+src/AudioSystem.cpp,27,error,resourceLeak,Resource leak: wavFile
+src/AudioSystem.cpp,66,error,mismatchAllocDealloc,Mismatching allocation and deallocation: listData
+src/AudioSystem.cpp,99,error,memleak,Memory leak: dataBuffer
+src/Collider.cpp,100,warning,nullPointer,Possible null pointer dereference: col2 - otherwise it is redundant to check it against null.
+src/Collider.cpp,310,style,unassignedVariable,Variable 'x' is not assigned a value.
+src/Collider.cpp,311,style,unassignedVariable,Variable 'x' is not assigned a value.
+src/Collider.cpp,312,style,unassignedVariable,Variable 'x' is not assigned a value.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::camera' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::deltaTime' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::physicsSim' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::prevX' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::prevY' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::buttonDown' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::xRot' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::yRot' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::running' is not initialized in the constructor.
+header/int/Scene.h,70,warning,uninitMemberVar,Member variable 'Scene::rb' is not initialized in the constructor.
+src/Collider.cpp,27,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Collider.cpp,28,performance,useInitializationList,Variable 'size' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Collider.cpp,59,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Component.cpp,5,warning,uninitMemberVar,Member variable 'Component::gameObject' is not initialized in the constructor.
+header/int/Animation.h,10,style,variableHidingEnum,Variable 'Vector3' hides enumerator with same name
+src/EditorScene.cpp,125,performance,redundantAssignment,Variable 'divisor' is reassigned a value before the old one has been used.
+src/EditorScene.cpp,259,style,unreadVariable,Variable 'deltaX' is assigned a value that is never used.
+src/EditorScene.cpp,260,style,unreadVariable,Variable 'deltaY' is assigned a value that is never used.
+src/EditorScene.cpp,18,warning,uninitMemberVar,Member variable 'EditorScene::sceneCamera' is not initialized in the constructor.
+header/int/UserComps.h,430,warning,uninitMemberVar,Member variable 'FireGun::input' is not initialized in the constructor.
+header/int/UserComps.h,430,warning,uninitMemberVar,Member variable 'FireGun::physicsSim' is not initialized in the constructor.
+header/int/UserComps.h,430,warning,uninitMemberVar,Member variable 'FireGun::camera' is not initialized in the constructor.
+header/int/UserComps.h,506,warning,uninitMemberVar,Member variable 'EnemyComp::physics' is not initialized in the constructor.
+header/int/UserComps.h,506,warning,uninitMemberVar,Member variable 'EnemyComp::pathing' is not initialized in the constructor.
+header/int/UserComps.h,506,warning,uninitMemberVar,Member variable 'EnemyComp::player' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::input' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::camera' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::physics' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::slider' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::healthBar' is not initialized in the constructor.
+header/int/UserComps.h,659,warning,uninitMemberVar,Member variable 'CameraControl::audioComp' is not initialized in the constructor.
+header/int/LoadingUtilities.h,17,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/LoadingUtilities.h,18,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/LoadingUtilities.h,19,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/3DUtilities.h,10,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,52,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,231,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,232,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,233,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,493,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,494,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,562,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,581,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,601,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,615,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,724,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,770,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/UserComps.h,771,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/Animation.h,59,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/Animation.h,69,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/Animation.h,70,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+header/int/Animation.h,25,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/FontBMPMaker.cpp,117,style,variableScope,The scope of the variable 'uvBuffer' can be reduced.
+src/FontBMPMaker.cpp,146,style,unreadVariable,Variable 'versionNumber' is assigned a value that is never used.
+src/FontBMPMaker.cpp,171,style,unreadVariable,Variable 'pix' is assigned a value that is never used.
+src/FontBMPMaker.cpp,180,style,unreadVariable,Variable 'x' is assigned a value that is never used.
+src/GameObject.cpp,17,warning,uninitMemberVar,Member variable 'GameObject::_id' is not initialized in the constructor.
+src/GameObject.cpp,24,warning,uninitMemberVar,Member variable 'GameObject::_id' is not initialized in the constructor.
+src/GameObject.cpp,24,warning,uninitMemberVar,Member variable 'GameObject::material' is not initialized in the constructor.
+src/GameObject.cpp,24,warning,uninitMemberVar,Member variable 'GameObject::mesh' is not initialized in the constructor.
+src/GuiElement.cpp,16,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/GuiElement.cpp,44,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/GuiElement.cpp,51,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/Input.cpp,6,error,bufferAccessOutOfBounds,Buffer is accessed out of bounds: keys
+src/Input.cpp,4,warning,uninitMemberVar,Member variable 'Input::mouseLeft' is not initialized in the constructor.
+src/Input.cpp,4,warning,uninitMemberVar,Member variable 'Input::mouseMiddle' is not initialized in the constructor.
+src/Input.cpp,4,warning,uninitMemberVar,Member variable 'Input::mouseRight' is not initialized in the constructor.
+src/Input.cpp,4,warning,uninitMemberVar,Member variable 'Input::mouseX' is not initialized in the constructor.
+src/Input.cpp,4,warning,uninitMemberVar,Member variable 'Input::mouseY' is not initialized in the constructor.
+src/Material.cpp,23,performance,useInitializationList,Variable 'matName' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,11,performance,useInitializationList,Variable 'uv2' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,18,performance,useInitializationList,Variable 'uv2' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,22,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,27,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,31,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,32,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,33,performance,useInitializationList,Variable 'vertices' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,34,performance,useInitializationList,Variable 'faces' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,42,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,43,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,59,performance,useInitializationList,Variable 'name' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,60,performance,useInitializationList,Variable 'fileName' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,61,performance,useInitializationList,Variable 'vertices' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Model.cpp,62,performance,useInitializationList,Variable 'faces' is assigned in constructor body. Consider performing initialization in initialization list.
+src/RaycastHit.cpp,4,performance,useInitializationList,Variable 'worldPos' is assigned in constructor body. Consider performing initialization in initialization list.
+header/int/ResourceManager.h,11,style,noCopyConstructor,'struct MaterialManager' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
+src/Scene.cpp,191,performance,redundantAssignment,Variable 'divisor' is reassigned a value before the old one has been used.
+src/Scene.cpp,205,style,unreadVariable,Variable 'child' is assigned a value that is never used.
+src/Scene.cpp,210,style,unreadVariable,Variable 'sliderTime' is assigned a value that is never used.
+src/Scene.cpp,244,style,unreadVariable,Variable 'y' is assigned a value that is never used.
+src/Scene.cpp,32,warning,uninitMemberVar,Member variable 'Scene::deltaTime' is not initialized in the constructor.
+src/Scene.cpp,32,warning,uninitMemberVar,Member variable 'Scene::prevX' is not initialized in the constructor.
+src/Scene.cpp,32,warning,uninitMemberVar,Member variable 'Scene::prevY' is not initialized in the constructor.
+src/Scene.cpp,32,warning,uninitMemberVar,Member variable 'Scene::buttonDown' is not initialized in the constructor.
+src/Scene.cpp,32,warning,uninitMemberVar,Member variable 'Scene::running' is not initialized in the constructor.
+src/Scene.cpp,33,performance,useInitializationList,Variable 'drawCalls' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Scene.cpp,262,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,234,style,variableScope,The scope of the variable 'instance' can be reduced.
+src/SceneLoading.cpp,250,style,unreadVariable,Variable 'instance' is assigned a value that is never used.
+src/SceneLoading.cpp,350,style,unreadVariable,Variable 'bgn' is assigned a value that is never used.
+src/SceneLoading.cpp,84,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,93,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,101,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,169,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,495,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/SceneLoading.cpp,496,warning,constStatement,Redundant code: Found a statement that begins with numeric constant.
+src/Texture.cpp,55,warning,uninitMemberVar,Member variable 'Texture::width' is not initialized in the constructor.
+src/Texture.cpp,55,warning,uninitMemberVar,Member variable 'Texture::height' is not initialized in the constructor.
+header/int/Texture.h,16,style,noCopyConstructor,'struct Texture' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
+src/Transform.cpp,6,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Transform.cpp,15,performance,useInitializationList,Variable 'position' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Transform.cpp,16,performance,useInitializationList,Variable 'rotation' is assigned in constructor body. Consider performing initialization in initialization list.
+src/Transform.cpp,17,performance,useInitializationList,Variable 'scale' is assigned in constructor body. Consider performing initialization in initialization list.
+src/simple-xml.cpp,112,warning,StlMissingComparison,Missing bounds check for extra iterator increment in loop.
+src/RigidBody.cpp,23,style,unusedFunction,The function 'AddForce' is never used.
+src/PhysicsSim.cpp,15,style,unusedFunction,The function 'AddStaticCollider' is never used.
+src/AABB.cpp,81,style,unusedFunction,The function 'CollideWith' is never used.
+src/FontBMPMaker.cpp,24,style,unusedFunction,The function 'ConvertTrueTypeToFUV' is never used.
+src/FontBMPMaker.cpp,89,style,unusedFunction,The function 'ExportFUV' is never used.
+src/Collider.cpp,31,style,unusedFunction,The function 'GetBounds' is never used.
+src/Transform.cpp,153,style,unusedFunction,The function 'GetInverse' is never used.
+src/Texture.cpp,126,style,unusedFunction,The function 'GetPixel' is never used.
+src/ResourceManager.cpp,63,style,unusedFunction,The function 'GetTextureByFileName' is never used.
+src/Mat4.cpp,63,style,unusedFunction,The function 'GetTranspose' is never used.
+src/Scene.cpp,232,style,unusedFunction,The function 'PhysicsUpdate' is never used.
+src/Texture.cpp,145,style,unusedFunction,The function 'Release' is never used.
+src/Scene.cpp,356,style,unusedFunction,The function 'RenderScene' is never used.
+src/Material.cpp,146,style,unusedFunction,The function 'SetMainTexture' is never used.
+src/Material.cpp,142,style,unusedFunction,The function 'SetTextureUniform' is never used.
+src/FontBMPMaker.cpp,186,style,unusedFunction,The function 'Swap2Bytes' is never used.
+src/FontBMPMaker.cpp,194,style,unusedFunction,The function 'Swap4Bytes' is never used.
+src/RigidBody.cpp,27,style,unusedFunction,The function 'Translate' is never used.
+src/Scene.cpp,183,style,unusedFunction,The function 'UpdateVertexBuffer' is never used.
+,,information,missingInclude,Cppcheck cannot find all the include files (use --check-config for details)
