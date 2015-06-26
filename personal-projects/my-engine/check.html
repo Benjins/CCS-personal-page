@@ -7,13 +7,27 @@
 </head>
 <body>
 	<div id="main-container">
-		<h3>Errors:</h3>
+		<div>
+			<h3>Errors:</h3>
+		</div>
 		<div id="error-container">
 		</div>
 	</div>
 
 	<script>
-		GetAllErrorsFromFile("files/cpp-check-analysis.txt");
+		//GetAllErrorsFromFile("files/cpp-check-analysis.txt"");
+		var errors = GetErrorsFromContents("src/AABB.cpp,19,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n"+
+"src/AABB.cpp,72,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n" +
+"src/AABB.cpp,73,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n"+
+"src/AudioSystem.cpp,27,error,resourceLeak,Resource leak: wavFile\n"+
+"src/AudioSystem.cpp,66,error,mismatchAllocDealloc,Mismatching allocation and deallocation: listData\n"+
+"src/AudioSystem.cpp,99,error,memleak,Memory leak: dataBuffer");
+
+		var container = document.getElementById("error-container");
+			for(var idx in errors){
+				var error = errors[idx];
+				AddErrorDisplayToContainer(container, error);
+			}
 	</script>
 </body>
 </html>

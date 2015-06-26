@@ -68,19 +68,13 @@ function ParseError(line){
 
 function AddErrorDisplayToContainer(container, error){
 	var errorDiv = document.createElement('div');
-	errorDiv.class = "error";
+	errorDiv.className = "error";
 
 	var fileInfo = document.createElement('p');
-	var lineInfo = document.createElement('p');
-	var messageInfo = document.createElement('p');
 
-	fileInfo.innerHTML = error.file;
-	lineInfo.innerHTML = error.line;
-	messageInfo.innerHTML = error.message;
+	fileInfo.innerHTML = "<span style='background:#afa;'>" + error.file + ":" + error.line + "</span>" + "<span style='float:right;'>" + error.message + "</span><span style='clear:both;'></span>";
 
 	errorDiv.appendChild(fileInfo);
-	errorDiv.appendChild(lineInfo);
-	errorDiv.appendChild(messageInfo);
 
 	container.appendChild(errorDiv);
 }
