@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/coverage-parse.js">
+	</script>
+</head>
+<body>
+	<div id="main-container">
+		<div>
+			<h3>Coverage:</h3>
+		</div>
+		<div id="coverage-container">
+		</div>
+	</div>
+	<script>
+		var covers = GetCoverageResultsFromContents(testString);
+
+		var container = document.getElementById("coverage-container");
+		for(var idx in covers){
+			var cover = covers[idx];
+			AddCoverageDisplayToContainer(container, cover);
+		}
+	</script>
+</body>
+</html>
