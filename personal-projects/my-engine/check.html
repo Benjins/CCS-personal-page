@@ -15,7 +15,9 @@
 	</div>
 
 	<script>
-		//GetAllErrorsFromFile("files/cpp-check-analysis.txt"");
+		GetAllErrorsFromFile("files/cpp-check-analysis.txt"");
+		//For local testing
+		/*
 		var errors = GetErrorsFromContents("src/AABB.cpp,19,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n"+
 "src/AABB.cpp,72,performance,useInitializationList,Variable 'minCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n" +
 "src/AABB.cpp,73,performance,useInitializationList,Variable 'maxCorner' is assigned in constructor body. Consider performing initialization in initialization list.\n"+
@@ -27,7 +29,7 @@
 			for(var idx in errors){
 				var error = errors[idx];
 				AddErrorDisplayToContainer(container, error);
-			}
+			}*/
 	</script>
 </body>
 </html>
