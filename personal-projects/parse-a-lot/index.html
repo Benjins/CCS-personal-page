@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Parse-A-Lot</title>
+	<link rel='stylesheet' type='text/css' href='css/style.css' />
+	<script src='js/parser.js'></script>
+</head>
+<body>
+	<h2>Parse-A-Lot</h2>
+	
+	<canvas id='mainCanvas' width='600px' height='600px'>
+	</canvas>
+	
+	<div id='button-list'>
+		<ul>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Split);'>Add Split</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Trim);'>Add Trim</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Merge);'>Add Merge</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Compare);'>Add Compare</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.ForEach);'>Add ForEach</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.IfElse);'>Add IfElse</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Constant);'>Add Constant</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.ParserIn);'>Add ParserIn</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.ParserOut);'>Add ParserOut</button></li>
+			<li><button onclick='window.canvasObj.AddNode(NODE_TYPES.Fork);'>Add Fork</button></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+#mainCanvas{
+	width: 80%;
+	height: 600px;
+	border: 1px solid #010101;
+	display: inline-block;
+	
+	z-index: 100;
+}
+
+#button-list{
+	width: 18%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#button-list ul{
+	list-style-type: none;
+	vertical-align: top;
+}
+
+#button-list ul li button{
+	padding: 8px;
+	border: 1px solid #555;
+	margin-bottom: 8px;
+	background: #ddd;
+	font-size: 18px;
+}
+
+#button-list ul li button:hover{
+	background: #eee;
+}
