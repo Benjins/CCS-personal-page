@@ -442,6 +442,8 @@ var ParseCanvas = function(){
 		else{
 			console.log("Unkown node type: '" + type + "'");
 		}
+		
+		this.nodes[nodes.length - 1].type = type;
 	}
 };
 
