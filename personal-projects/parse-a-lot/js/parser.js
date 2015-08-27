@@ -1,16 +1,14 @@
 /*
-string split
-merge
-trim
 get nth of list
 parse number
-fid / substr
-foreach in list
+strstr / substr
 find replace
 to lower case
 to upper case
-if then else
-compare
+numbers
+str length
+list length
+< > =
 */
 
 /*
@@ -209,6 +207,107 @@ CanvasNode.prototype.MouseUp = function(point, selection){
 	
 }
 
+CanvasNode.prototype.Evaluate = function(){
+	var type = this.type;
+	
+	//This is the purest form of OO.  You just don't understand it.
+	if(type === NODE_TYPES.Split){
+		var text = this.inputs[0].node.Evaluate();
+		var delimiter = this.textField.value;
+		
+		return text.split(delimiter);
+	}
+	else if(type === NODE_TYPES.Merge){
+		var text = this.inputs[0].node.Evaluate();
+		var delimiter = this.textField.value;
+		
+		var output = "";
+		var isFirst = true;
+		for(var idx in text){
+			var line = text[idx];
+			
+			if(isFirst){
+				output += line;
+				isFirst = false;
+			}
+			else{
+				output += (delimiter + line);
+			}
+		}
+		
+		return output;
+	}
+	else if(type === NODE_TYPES.Trim){
+		var text = this.inputs[0].node.Evaluate();
+		
+		return text.trim();
+	}
+	else if(type === NODE_TYPES.Compare){
+		var input1 = this.inputs[0].node.Evaluate();
+		var input2 = this.inputs[1].node.Evaluate();
+		
+		return input1 === input2;
+	}
+	else if(type === NODE_TYPES.ForEach){
+		//console.trace();
+		//I call this a bit of hacking.  They call it manslaughter.
+		if(this.inForEach){
+			//console.log(this.index);
+			return this.inputArray[this.index];
+		}
+		else{
+			this.inForEach = true;
+			
+			var inputArray = this.inputs[0].node.Evaluate();
+			//console.log(inputArray);
+			
+			this.index = 0;
+			this.inputArray = inputArray;
+			
+			var output = [];
+			
+			for(var idx = 0; idx < inputArray.length; idx++){
+				this.index = idx;
+				//console.log("index: " + idx);
+				var result = this.inputs[1].node.Evaluate();
+				//console.log("result: '" + result + "'");
+				output.push(result);
+			}
+			
+			this.inForEach = false;
+			
+			return output;
+		}
+	}
+	else if(type === NODE_TYPES.IfElse){
+		var isTrue = this.inputs[0].node.Evaluate();
+		
+		if(isTrue){
+			console.log(this.inputs[1].node);
+			return this.inputs[1].node.Evaluate();
+		}
+		else{
+			console.log(this.inputs[2].node);
+			return this.inputs[2].node.Evaluate();
+		}
+	}
+	else if(type === NODE_TYPES.Constant){
+		return this.textField.value;
+	}
+	else if(type === NODE_TYPES.ParserIn){
+		var parserIn = document.getElementById('parserIn');
+		
+		return parserIn.value;
+	}
+	else if(type === NODE_TYPES.ParserOut){
+		//console.log(this.inputs);
+		return this.inputs[0].node.Evaluate();
+	}
+	else if(type === NODE_TYPES.Fork){
+		return this.inputs[0].node.Evaluate();
+	}
+}
+
 var ParseCanvas = function(){
 	this.nodes = [];
 	this.clickedNode = null;
@@ -339,6 +438,26 @@ var ParseCanvas = function(){
 		}
 	}
 	
+	this.DoParse = function(){
+		var parserOut = null;
+		
+		for(var idx in this.nodes){
+			if(this.nodes[idx].type === NODE_TYPES.ParserOut){
+				parserOut = this.nodes[idx];
+				break;
+			}
+		}
+		
+		if(parserOut !== null){
+			var output = parserOut.Evaluate();
+			var outputElem = document.getElementById('outputText');
+			outputElem.innerHTML = JSON.stringify(output);
+		}
+		else{
+			console.log("Error: Could not find ParserOut node");
+		}
+	}
+	
 	this.AddNode = function(type){
 		if(type === NODE_TYPES.Split){
 			var node = new CanvasNode(200,80);
@@ -387,7 +506,8 @@ var ParseCanvas = function(){
 			node.outputs = [null, null];
 			node.inputTypes = [DATA_TYPES.StringList, DATA_TYPES.String];
 			node.outputTypes = [DATA_TYPES.StringList, DATA_TYPES.String];
-			node.name = "For Each__";
+			node.name = "For Each";
+			node.inForEach = false;
 			this.nodes.push(node);
 		}
 		else if(type === NODE_TYPES.IfElse){
@@ -425,7 +545,7 @@ var ParseCanvas = function(){
 			var node = new CanvasNode(120,80);
 			node.inputs = [null];
 			node.outputs = [];
-			node.inputTypes = [DATA_TYPES.String];
+			node.inputTypes = [DATA_TYPES.Any];
 			node.outputTypes = [];
 			node.name = "Parser Out";
 			this.nodes.push(node);
@@ -437,13 +557,14 @@ var ParseCanvas = function(){
 			node.inputTypes = [DATA_TYPES.Any];
 			node.outputTypes = [DATA_TYPES.Any, DATA_TYPES.Any];
 			node.name = "Fork";
+			node.cachedResult = null;
 			this.nodes.push(node);
 		}
 		else{
 			console.log("Unkown node type: '" + type + "'");
 		}
 		
-		this.nodes[nodes.length - 1].type = type;
+		this.nodes[this.nodes.length - 1].type = type;
 	}
 };
 

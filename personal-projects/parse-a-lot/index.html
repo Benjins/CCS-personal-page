@@ -6,7 +6,10 @@
 	<script src='js/parser.js'></script>
 </head>
 <body>
+	<div id='top-row'>
 	<h2>Parse-A-Lot</h2>
+	<button onclick='window.canvasObj.DoParse();'>Parse</button>
+	</div>
 	
 	<canvas id='mainCanvas' width='600px' height='600px'>
 	</canvas>
@@ -26,8 +29,8 @@
 		</ul>
 	</div>
 	<div style='width:100%;' id='bottom-row'>
-		<textarea style='display:inline-block;width:45%'rows="8" cols="80"></textarea>
-		<p id='output' style='display:inline-block;width:45%'></p>
+		<textarea id='parserIn' style='display:inline-block;width:45%'rows="8" cols="80"></textarea>
+		<p id='outputText' style='display:inline-block;width:45%'></p>
 	</div>
 </body>
 </html>
