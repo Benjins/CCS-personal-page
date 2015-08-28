@@ -610,11 +610,18 @@ var ParseCanvas = function(){
 	}
 	
 	this.ClearNodes = function(){
+		for(var idx in this.nodes){
+			var textField = this.nodes[idx].textField;
+			if(textField !== null){
+				textField.parentElement.removeChild(textField);
+			}
+		}
+		
 		this.nodes.length = 0;
 	}
 	
 	this.Load = function(){
-		this.nodes.length = 0;
+		this.ClearNodes();
 		
 		var json = JSON.parse(localStorage['parseALotJson']);
 		
