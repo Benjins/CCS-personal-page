@@ -7,8 +7,12 @@
 </head>
 <body>
 	<div id='top-row'>
-	<h2>Parse-A-Lot</h2>
-	<button onclick='window.canvasObj.DoParse();'>Parse</button>
+		<h2>Parse-A-Lot</h2>
+		<button onclick='window.canvasObj.DoParse();'>Parse</button>
+		<button onclick='window.canvasObj.Save();'>Save</button>
+		<button onclick='window.canvasObj.Load();'>Load</button>
+		<button onclick='window.canvasObj.Download();'>Download Copy</button>
+		<button onclick='window.canvasObj.ClearNodes();'>Clear Nodes</button>
 	</div>
 	
 	<canvas id='mainCanvas' width='600px' height='600px'>

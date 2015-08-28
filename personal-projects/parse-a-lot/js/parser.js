@@ -566,6 +566,81 @@ var ParseCanvas = function(){
 		
 		this.nodes[this.nodes.length - 1].type = type;
 	}
+	
+	this.ToJson = function(){
+		var json = [];
+		
+		for(var idx in this.nodes){
+			var node = this.nodes[idx];
+			
+			var nodeJson = {};
+			nodeJson.type = node.type;
+			nodeJson.position = node.position;
+			nodeJson.connections = [];
+			
+			for(var outIdx in node.outputs){
+				var inOut = node.outputs[outIdx];
+				if(inOut === null){
+					nodeJson.connections.push(null);
+				}
+				else{
+					var connection = {};
+					var toNode = inOut.node;
+					for(var idx in this.nodes){
+						if(this.nodes[idx] === toNode){
+							connection.to = idx;
+							break;
+						}
+					}
+					
+					connection.inputIndex = inOut.index;
+					
+					nodeJson.connections.push(connection);
+				}
+			}
+			
+			json.push(nodeJson);
+		}
+		
+		return json;
+	}
+	
+	this.Save = function(){
+		localStorage['parseALotJson'] = JSON.stringify(this.ToJson());
+	}
+	
+	this.ClearNodes = function(){
+		this.nodes.length = 0;
+	}
+	
+	this.Load = function(){
+		this.nodes.length = 0;
+		
+		var json = JSON.parse(localStorage['parseALotJson']);
+		
+		for(var idx in json){
+			this.AddNode(json[idx].type);
+		}
+		
+		for(var idx in json){
+			this.nodes[idx].position = json[idx].position;
+			for(var outIdx in json[idx].connections){
+				if(json[idx].connections[outIdx] !== null){
+					var from = this.nodes[idx];
+					var to = this.nodes[json[idx].connections[outIdx].to];
+					var toInputIndex = json[idx].connections[outIdx].inputIndex;
+					from.outputs[outIdx] = new InOutNode(to, true, toInputIndex);
+					to.inputs[toInputIndex] = new InOutNode(from, false, outIdx);
+					console.log(from);
+					console.log(to);
+				}
+			}
+		}
+	}
+	
+	this.Download = function(){
+		//ToJson, put in file, save
+	}
 };
 
 window.onload = function(){

@@ -29,3 +29,12 @@
 #button-list ul li button:hover{
 	background: #eee;
 }
+
+#top-row *{
+	display: inline-block;
+}
+
+#top-row button{
+	margin-left: 20px;
+	font-size:18px;
+}
