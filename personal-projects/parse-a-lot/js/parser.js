@@ -11,12 +11,6 @@ list length
 < > =
 */
 
-/*
-multiple outputs for same node
-
-sub nodes, i.e. foreach
-*/
-
 var NODE_TYPES = {
 	Split : 0,
 	Merge : 1,
@@ -45,6 +39,14 @@ dataTypeColors[DATA_TYPES.StringList] = "#2c2";
 dataTypeColors[DATA_TYPES.Bool] = "#22c";
 dataTypeColors[DATA_TYPES.StringOrStringList] = "#cc2";
 dataTypeColors[DATA_TYPES.Any] = "#ccc";
+
+function Escape(str){
+	
+}
+
+function DeEscape(str){
+	
+}
 
 var Vector2 = function(x,y){
 	this.x = x;
