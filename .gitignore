@@ -4,6 +4,8 @@
 _harp/personal-projects/deployment/**/*.zip
 personal-projects/deployment/**/*.zip
 
+personal-projects/my-engine/files/*
+
 *.*~
 
 *.css~
