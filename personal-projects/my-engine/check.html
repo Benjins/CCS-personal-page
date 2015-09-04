@@ -12,6 +12,8 @@
 		</div>
 		<div id="error-container">
 		</div>
+		<div id="legend">
+		</div>
 	</div>
 
 	<script>
@@ -24,10 +26,13 @@
 "src/AudioSystem.cpp,99,error,memleak,Memory leak: dataBuffer");
 
 		var container = document.getElementById("error-container");
-			for(var idx in errors){
-				var error = errors[idx];
-				AddErrorDisplayToContainer(container, error);
-			}
+		for(var idx in errors){
+			var error = errors[idx];
+			AddErrorDisplayToContainer(container, error);
+		}
+
+		var legend = document.getElementById("legend");
+
 	</script>
 </body>
 </html>

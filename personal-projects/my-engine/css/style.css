@@ -17,6 +17,7 @@ p,h1,h2,h3,h4,h5{
 	width:80%;
 	margin-left: 20px;
 	background: #bbb;
+	display:inline-block;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -47,6 +48,10 @@ p,h1,h2,h3,h4,h5{
 
 .coverage:hover{
 	background: #aaa;
+}
+
+#legend{
+	display: inline-block;
 }
 
 .error p{

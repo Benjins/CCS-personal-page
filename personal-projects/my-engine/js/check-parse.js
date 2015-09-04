@@ -8,6 +8,13 @@ var Error = function(file, line, id, severity, message){
 	this.message = message;
 }
 
+var idMap = {
+error:"#a11",
+warning:"#a51",
+style:"#aaa",
+performance:"#a5a", 	
+portability:"#44a", 	
+information:"#ddd"}; 	
 
 function GetAllErrorsFromFile(fileName){
 	var request = new XMLHttpRequest();
@@ -72,7 +79,8 @@ function AddErrorDisplayToContainer(container, error){
 
 	var fileInfo = document.createElement('p');
 
-	fileInfo.innerHTML = "<span style='background:#afa;'>" + error.file + ":" + error.line + "</span>" + "<span style='float:right;'>" + error.message + "</span><span style='clear:both;'></span>";
+	console.log(error.id);
+	fileInfo.innerHTML = "<span style='background:" + idMap[error.id] + ";'>" + error.file + ":" + error.line + "</span>" + "<span style='float:right;'>" + error.message + "</span><span style='clear:both;'></span>";
 
 	errorDiv.appendChild(fileInfo);
 
