@@ -31,6 +31,13 @@ function getComments(){
 
 function showComments(commentList){
 	var commentListElem = document.getElementById('comments-list');
+	
+	var children = commentListElem.children;
+	for(var idx = 0; idx < children.length; idx++){
+		console.log(commentListElem);
+		console.log(children[idx]);
+		commentListElem.removeChild(children[idx]);
+	}
 
 	for(var idx in commentList){
 		var cmmt = commentList[idx];
