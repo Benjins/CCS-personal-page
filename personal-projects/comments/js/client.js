@@ -6,8 +6,16 @@ function sendUserComment(user, comment){
 	var req = new XMLHttpRequest();
 	req.open("POST", "http://45.55.247.145/comments/upload.php");
 	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-	req.send(JSON.stringify(commentObj));
+	
 	console.log(JSON.stringify(commentObj));
+	
+	req.onreadystatechange = function() {
+	    if (req.readyState == 4) {
+			console.log(req.responseText);
+	    }
+	};
+	
+	req.send(JSON.stringify(commentObj));
 }
 
 function sendComment(){
@@ -22,7 +30,8 @@ function getComments(){
 	req.open("GET", "http://45.55.247.145/comments/upload.php", true);
 	req.onreadystatechange = function() {
 	    if (req.readyState == 4) {
-		showComments(JSON.parse(req.responseText));
+			console.log(req.responseText);
+			showComments(JSON.parse(req.responseText));
 	    }
 	};
 
@@ -33,10 +42,13 @@ function showComments(commentList){
 	var commentListElem = document.getElementById('comments-list');
 	
 	var children = commentListElem.children;
+	var childrenCopy = [];
 	for(var idx = 0; idx < children.length; idx++){
-		console.log(commentListElem);
-		console.log(children[idx]);
-		commentListElem.removeChild(children[idx]);
+		childrenCopy.push(children[idx]);
+	}
+	
+	for(var idx = 0; idx < childrenCopy.length; idx++){
+		commentListElem.removeChild(childrenCopy[idx]);
 	}
 
 	for(var idx in commentList){
