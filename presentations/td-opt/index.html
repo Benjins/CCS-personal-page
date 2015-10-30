@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Optimizing a Tower Defense</h1>
+					<p>
+						<small>Created by <a href="http://www.ccs.neu.edu/home/bnsmith/">Benji Smith</a> using <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a></small>
+					</p>
+				</section>
+				
+				<section>
+					<h1>The Game</h1>
+					<div>
+						<img src="img/game_overview.jpg" width='70%' alt="Overview of Midnight Terrors."/>
+						<ul>
+							<li>Tower Defense game</li>
+							<li>Monsters try to path to the right</li>
+							<li>Users place toys anywhere on grid</li>
+						</ul>
+					</div>
+				</section>
+				
+				<section>
+					<h1>The problem</h1>
+					<div style='width:120%;'>
+						<img src="img/gameplay.jpg" width='60%' alt="Midnight Terrors towers being placed."/>
+						<ul style='width:35%; float: right;'>
+							<li>Users can't block monsters' paths, need to know ahead of time</li>
+							<li>Naive solution: set each point to be blocked, check if path exists</li>
+							<li>Result: SLOW</li>
+						</ul>
+					</div>
+				</section>
+				
+				<section>
+				<h1>Forbidden points</h1>
+					<img width='364px' src='img/forbidden.jpg'/>
+				</section>
+				
+				<section>
+					<h1>First solutions</h1>
+					<ul>
+						<li class='fragment'>Only check grid cells along the current best path.</li>
+						<li class='fragment'>Check 20-40 cells, as opposed to 600-800.</li>
+						<li class='fragment'>Still slow</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Possible other solutions</h1>
+					<ul>
+						<li class='fragment'>Binary search along the path</li>
+						<li class='fragment'>Just optimize pathfinding</li>
+						<li class='fragment'>Have pathfinding mark grid cells as 'important'</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What we did</h1>
+					<ul>
+						<li>Each grid cell tracks adjacency to the top and bottoms</li>
+						<li>Grid cell is occupied and adjacent => its neighbors are adjacent</li>
+						<li>Recur if needed</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>How it works</h1>
+					<div style='width:120%;'>
+						<img src="img/adjacent_initial.jpg" width='60%' alt="Midnight Terrors towers being placed."/>
+						<p style='width:35%; float: right;'>
+						At first, only the grid points adjacent to the edges are marked.  Top and bottom are distinguished.
+						</p>
+					</div>
+				</section>
+				
+				<section>
+					<h1>How it works</h1>
+					<div style='width:120%;'>
+						<img src="img/adjacent_next.jpg" width='60%' alt="Midnight Terrors towers being placed."/>
+						<p style='width:35%; float: right;'>
+						Any time a tower is placed, recalculate.
+						</p>
+					</div>
+				</section>
+				
+				<section>
+					<h1>How it works</h1>
+					<div style='width:120%;'>
+						<img src="img/adjacent_forbidden.jpg" width='60%' alt="Midnight Terrors towers being placed."/>
+						<p style='width:35%; float: right;'>
+						If a grid is adjacent to both the top and bottom, it's forbidden.
+						</p>
+					</div>
+				</section>
+				
+				<section>
+					<h1>Results</h1>
+					<ul>
+						<li>Pathfinding called much less</li>
+						<li>Almost no lag when placing towers</li>
+						<li>Users happier  :)</li>
+					</ul>
+				</section>
+				
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
