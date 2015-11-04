@@ -1,0 +1,69 @@
+*{
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+	line-height: 1.5;
+	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+#main-container{
+	margin: 0 auto;
+	width: 80%;
+	max-width: 1000px;
+}
+
+.top-bar{
+	
+}
+
+h2{
+	margin-top: -0.6em;
+	margin-top: -0.6rem;
+	margin-right: 10%;
+	float: left;
+}
+
+.top-bar ul li{
+	width: 32px;
+	float: left;
+	margin-left: 6px;
+}
+
+.top-bar ul li:hover{
+	opacity: 0.5;
+}
+
+
+.top-bar ul{
+	list-style-type: none;
+}
+
+.twitter{
+	background: url();
+}
+
+h2{
+	font-size: 1.8em;
+	font-size: 1.8rem;
+}
+
+a{
+	font-size: 1.5em;
+	font-size: 1.5rem;
+}
+
+p{
+	font-size: 1.5em;
+	font-size: 1.5rem;
+}
