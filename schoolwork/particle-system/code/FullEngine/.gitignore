@@ -1,0 +1,62 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+!lib/*.a
+!lib/*.lib
+
+#OpenGL traces
+*.trace
+
+# Executables
+*.exe
+*.out
+*.app
+out/*
+build/*
+#autosaves
+*.*~
+build.b
+run.b
+
+#mac specific
+.DS_Store
+
+#generated documentation
+docs/*
+
+#misc
+*.cpp~
+*.h~
+*.fs~
+*.vs~
+EngineNP++Work.txt
+*.vcxproj.filters
+*.vcxproj.user
+Debug/*
+x64/*
+*.mtl
+build/*
+temp/*
+my-engine/*
+my-engine/my-engine.xcodeproj/*
+

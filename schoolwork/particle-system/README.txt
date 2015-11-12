@@ -1,0 +1,3 @@
+For my project, I created a 3D particle system in C++ and OpenGL.  I built it on top of a custom game engine I'm writing, so actually getting it to run would be difficult.  However, I have screenshots and videos available, so that isn't necessary.
+
+The relevant source is in code/ParticleSystem/, and is also highlighted in the write-up in index.html.  The full engine code is in code/FullEngine/, and is only there if you wanted to look at further details.

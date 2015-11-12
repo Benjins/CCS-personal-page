@@ -1,0 +1,1 @@
+For this assignment, I did the image processing in JavaScript.  The page is live at http://www.ccs.neu.edu/home/bnsmith/personal-projects/image-proc/ which has the paper, the code, and the images.  The pdf contains a render of that page.  The code doesn't work when run locally (it needs to be on server), but the source file is in js/image.js.

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<title>Studio</title>
+</head>
+<body>
+<p>Hello.  It seems the studio is here.</p>
+<input type="file" name="imgUp" id="imgUp" size="24" alt="Show an image"/>
+<canvas width='640' height='400' id='scene-canvas' style='border: 1px solid #222;'>
+</canvas>
+<br/>
+<button onclick='RunScene("startup__scene");'>Run Game</button>
+<button onclick='SaveProject();'>Save Project</button>
+<button onclick='LoadProject();RunScene("startup__scene");'>Load Project</button>
+<script src='js/jszip.min.js'></script>
+<script src='js/FileSaver.min.js'></script>
+<script src='js/images.js'></script>
+<script src='js/gameproject.js'></script>
+<script src='js/engine.js'></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<Scene name='my-engine'>
+  <Material name='gui' shader='data/gui' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='color' shader='data/col' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='myMat' shader='data/no-bump-shader' texture='data/Texture.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='myMat-arm' shader='data/no-bump-armature_shader' texture='data/Texture.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='myMat2' shader='data/shader' texture='data/Texture.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='floorOwnMat' shader='data/shader' texture='data/grass-dirt.bmp' bumpMap='data/grass-dirt-norm.bmp' uvScale='5.000000,5.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='floorMat' shader='data/shader' texture='data/grass-dirt.bmp' bumpMap='data/grass-dirt-norm.bmp' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='stairMat' shader='data/shader' texture='data/grass-dirt.bmp' bumpMap='data/grass-dirt-norm.bmp' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='enemyMat' shader='data/no-bump-shader' texture='data/Texture.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='enemyMat2' shader='data/no-bump-shader' texture='data/Texture.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='gui-txt' shader='data/guitext' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='monkey' shader='data/shader' texture='data/Monkey.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='worm' shader='data/shader' texture='data/Worm_Diff.bmp' bumpMap='data/Panel_Floor_N.bmp' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='worm-arm' shader='data/no-bump-armature_shader' texture='data/Worm_Diff.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='wall' shader='data/shader' texture='data/Stonewall_D.bmp' bumpMap='data/Stonewall_N.bmp' uvScale='8.000000,16.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='shaderTexture2.bmp' shader='data/shader' texture='data/Texture2.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='skybox' shader='data/skybox' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='reflective' shader='data/no-bump-reflective' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <Material name='particle' shader='data/particle' texture='data/Particle.bmp' bumpMap='' uvScale='1.000000,1.000000' uvOffset='0.000000,0.000000'/>
+  <GuiElement name='healthSlider' width='300' height='1' position='0.100000,0.100000' scale='0.200000,0.020000'/>
+  <GuiText name='healthText' fuv='data/CODE_Bold64.fuv' text='Health: 100' textScale='0.400000,0.400000' position='0.100000,0.050000' scale='0.100000,0.100000'/>
+  <GuiText name='fpsText' fuv='data/CODE_Bold64.fuv' text='FPS:' textScale='0.400000,0.400000' position='0.100000,0.950000' scale='0.100000,0.100000'/>
+  <AudioClip name='cough' fileName='data/coughing.wav'/>
+  <AudioClip name='footstep' fileName='data/footstep.wav'/>
+  <Skybox images='data/Sky_Right.bmp,data/Sky_Left.bmp,data/Sky_Up.bmp,data/Sky_Down.bmp,data/Sky_Back.bmp,data/Sky_Front.bmp' material='skybox'/>
+  <Prefab name='bullet'>
+    <Transform position='0.120000,3.000000,-0.400000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.100000,0.100000,0.100000'/>
+    <Material name='floorMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <BulletComponent speed='6.000000'/>
+    <RigidBody mass='0.100000' isKinematic='F'/>
+  </Prefab>
+  <Prefab name='bullet-rb'>
+    <Transform position='0.120000,3.000000,-0.400000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.100000,0.100000,0.100000'/>
+    <Material name='floorMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <RigidBody mass='0.100000' isKinematic='T'/>
+  </Prefab>
+  <?
+  <GameObject name='test2-obj'>
+    <Transform position='1.000000,0.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='worm-arm'/>
+    <Mesh source='data/char_03.mdf'/>
+  </GameObject>
+  ?>
+  <GameObject name='myObj'>
+    <Transform position='0.121761,3.299059,-0.360763' rotation='0.986200,0.165557,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <Material name='floorMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='mainCam'>
+    <Transform position='-0.130018,2.710166,-2.909658' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='0.200000,0.200000,0.200000'/>
+  </GameObject>
+  <GameObject name='mainCamSub'>
+    <Transform parent='mainCam' position='0.000000,0.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <Camera/>
+    <AudioComponent clipName='footstep' volume='0.900000' loop='F' autoPlay='F'/>
+    <FireGun/>
+    <CameraControl speed='6.000000' velocity='0.000000' isGrounded='F' health='1.000000' stepDelay='0.600000'/>
+  </GameObject>
+  <GameObject name='hand3'>
+    <Transform parent='mainCamSub' position='0.000000,0.010000,0.020000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.020000,0.020000,0.020000'/>
+    <Material name='worm-arm'/>
+    <Mesh source='data/hand_03.mdf'/>
+  </GameObject>
+  <GameObject name='light1'>
+    <Transform position='0.000000,1.121765,3.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <LightComponent intensity='1.000000' isDirectional='F'/>
+    <AnimationComponent type='vector3' target='position' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='0.000000,1.100000,3.000000'/>
+      <KeyFrame time='1.000000' value='0.000000,3.100000,3.000000'/>
+      <KeyFrame time='2.000000' value='0.000000,1.100000,3.000000'/>
+    </AnimationComponent>
+  </GameObject>
+  <GameObject name='light2'>
+    <Transform position='0.000000,-5.000000,0.000000' rotation='0.906308,0.000000,0.422618,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <LightComponent intensity='1.000000' isDirectional='T'/>
+  </GameObject>
+  <GameObject name='reticle'>
+    <Transform parent='mainCamSub' position='0.000000,0.000000,0.050000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.000600,0.000600,0.000600'/>
+    <Material name='myMat2'/>
+    <Mesh source='data/test.obj'/>
+  </GameObject>
+  <GameObject name='floor'>
+    <Transform position='0.000000,-0.111120,0.618002' rotation='1.000000,0.000000,0.000000,0.000000' scale='5.000000,0.100000,5.000000'/>
+    <Material name='floorOwnMat'/>
+    <Mesh source='data/floor.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='4.000000,0.500000,4.000000'/>
+    <AnimationComponent type='vector2' target='uvOffset' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='0.000000,0.000000'/>
+      <KeyFrame time='2.000000' value='0.000000,0.010000'/>
+      <KeyFrame time='4.000000' value='0.000000,0.000000'/>
+    </AnimationComponent>
+  </GameObject>
+  <GameObject name='myObj2'>
+    <Transform parent='myObj' position='2.000000,1.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='myMat'/>
+    <Mesh source='data/test.obj'/>
+  </GameObject>
+  <GameObject name='myObj2_1'>
+    <Transform parent='myObj' position='-2.048065,1.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='myMat'/>
+    <Mesh source='data/test.obj'/>
+  </GameObject>
+  <GameObject name='myObj2_2'>
+    <Transform parent='myObj' position='2.000000,1.000000,-2.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='shaderTexture2.bmp'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <MatChangeOnHit/>
+    <AnimationComponent type='vector3' target='position' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='2.000000,1.100000,-2.000000'/>
+      <KeyFrame time='1.000000' value='2.000000,3.100000,-2.000000'/>
+      <KeyFrame time='2.000000' value='2.000000,1.100000,-2.000000'/>
+    </AnimationComponent>
+  </GameObject>
+  <GameObject name='monkey'>
+    <Transform position='-2.487024,0.853775,-2.078232' rotation='0.814109,0.258640,0.157428,-0.495528' scale='1.000000,1.000000,1.000000'/>
+    <Material name='reflective'/>
+    <Mesh source='data/monkey.obj'/>
+  </GameObject>
+  <GameObject name='refl_sphere'>
+    <Transform position='-6.427332,0.246075,2.078232' rotation='-0.250467,-0.311520,-0.786969,-0.470003' scale='1.000000,1.000000,1.000000'/>
+    <Material name='reflective'/>
+    <Mesh source='data/sphere.obj'/>
+    <SphereCollider position='0.000000,0.000000,0.000000' radius='1.010000'/>
+  </GameObject>
+  <GameObject name='worm'>
+    <Transform position='-3.487024,5.153775,-5.078232' rotation='0.136925,-0.044099,-0.941950,-0.303372' scale='1.000000,1.000000,1.000000'/>
+    <Material name='worm'/>
+    <Mesh source='data/Worm.obj'/>
+  </GameObject>
+  <?
+  <GameObject name='wall1'>
+    <Transform position='-2.000000,0.882326,1.000000' rotation='0.890998,0.000000,0.454008,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <Material name='floorMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.100000,1.000000'/>
+    <AnimationComponent type='quaternion' target='rotation' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='0.906308,0.000000,0.000000,0.422618'/>
+      <KeyFrame time='1.000000' value='1.000000,0.000000,0.000000,0.000000'/>
+      <KeyFrame time='2.000000' value='0.906308,0.000000,0.000000,0.422618'/>
+    </AnimationComponent>
+  </GameObject>
+  ?>
+  <GameObject name='wall_room1'>
+    <Transform position='12.590041,0.618957,-4.064484' rotation='0.852412,0.000000,-0.522871,0.000000' scale='5.000000,1.000000,0.200000'/>
+    <Material name='wall'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='wall_room2'>
+    <Transform position='11.473914,0.602014,3.873738' rotation='0.915875,0.000000,0.401463,0.000000' scale='5.000000,1.000000,0.200000'/>
+    <Material name='wall'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='wall_room3'>
+    <Transform position='5.617823,0.618957,-8.344173' rotation='1.000000,0.000000,0.000000,0.000000' scale='5.000000,1.000000,0.200000'/>
+    <Material name='wall'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='wall_room4'>
+    <Transform position='3.427919,0.618957,-2.023668' rotation='0.831550,0.000000,-0.555449,0.000000' scale='5.000000,1.000000,0.200000'/>
+    <Material name='wall'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='stairs1'>
+    <Transform position='2.162069,3.618957,6.274128' rotation='0.906308,0.422618,0.000000,0.000000' scale='4.000000,1.000000,1.000000'/>
+    <Material name='stairMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <AudioComponent clipName='cough' volume='0.700000' loop='T' autoPlay='F'/>
+  </GameObject>
+  <GameObject name='stairs2'>
+    <Transform position='4.181658,0.750388,10.691010' rotation='0.906308,0.000000,0.000000,0.422618' scale='2.000000,1.000000,1.000000'/>
+    <Material name='stairMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='0.000000,1.000000,-1.383788' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='6.103372,1.000000,5.823260' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='0.000000,1.000000,3.949597' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='-4.690051,1.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='13.107838,1.000000,4.116074' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='8.442717,1.000000,3.437002' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='3.083437,1.000000,6.084731' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='1.472075,1.000000,1.659251' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='-5.502997,1.000000,-7.582002' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='-4.930663,1.340425,7.109303' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='10.433056,1.000000,-3.449856' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='7.764320,1.000000,9.251365' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='0.000000,1.000000,-11.123352' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='7.486763,1.000000,-10.612253' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='12.921451,1.000000,-8.408252' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='16.991035,0.035585,-2.502251' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='7.358490,1.000000,-6.590945' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='5.996462,1.000000,-1.947756' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name=''>
+    <Transform position='0.399335,1.000000,-7.144019' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <PathNodeComponent/>
+  </GameObject>
+  <GameObject name='wall_room5'>
+    <Transform position='-12.740051,0.618957,5.415617' rotation='0.831550,0.000000,-0.555449,0.000000' scale='5.000000,1.000000,0.200000'/>
+    <Material name='wall'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='door1'>
+    <Transform position='1.524011,0.470176,-6.533642' rotation='0.831550,0.000000,-0.555449,0.000000' scale='1.000000,1.000000,0.200000'/>
+    <DoorComponent isLocked='T' isOpen='F'/>
+  </GameObject>
+  <GameObject name='door1_door'>
+    <Transform parent='door1' position='-1.000000,0.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='1.000000,1.000000,1.000000'/>
+    <Material name='stairMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='myObj(clone)'>
+    <Transform position='0.014983,6.271535,12.249559' rotation='0.848047,-0.418258,-0.291823,0.143928' scale='1.000000,1.000000,1.000000'/>
+    <Material name='floorMat'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+  </GameObject>
+  <GameObject name='myObj2(clone)'>
+    <Transform parent='myObj(clone)' position='2.000000,1.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='myMat'/>
+    <Mesh source='data/test.obj'/>
+  </GameObject>
+  <GameObject name='myObj2_1(clone)'>
+    <Transform parent='myObj(clone)' position='-2.048065,1.000000,0.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='myMat'/>
+    <Mesh source='data/test.obj'/>
+  </GameObject>
+  <GameObject name='myObj2_2(clone)'>
+    <Transform parent='myObj(clone)' position='2.000000,1.000000,-2.000000' rotation='1.000000,0.000000,0.000000,0.000000' scale='0.200000,0.200000,0.200000'/>
+    <Material name='shaderTexture2.bmp'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <MatChangeOnHit/>
+    <AnimationComponent type='vector3' target='position' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='2.000000,1.100000,-2.000000'/>
+      <KeyFrame time='1.000000' value='2.000000,3.100000,-2.000000'/>
+      <KeyFrame time='2.000000' value='2.000000,1.100000,-2.000000'/>
+    </AnimationComponent>
+  </GameObject>
+  <GameObject name='platform1'>
+    <Transform position='-8.495996,0.478573,-5.043204' rotation='1.000000,0.000000,0.000000,0.000000' scale='2.800000,0.300000,1.000000'/>
+    <Material name='enemyMat2'/>
+    <Mesh source='data/test.obj'/>
+    <BoxCollider position='0.000000,0.000000,0.000000' size='1.000000,1.000000,1.000000'/>
+    <AnimationComponent type='vector3' target='position' loop='T' autoplay='T'>
+      <KeyFrame time='0.000000' value='-8.495996,0.478573,-5.043204'/>
+      <KeyFrame time='5.000000' value='-8.495996,4.478573,-5.043204'/>
+      <KeyFrame time='10.000000' value='-8.495996,0.478573,-5.043204'/>
+    </AnimationComponent>
+  </GameObject>
+</Scene>

@@ -1,0 +1,11 @@
+<Assets>
+	<FUV fontFile='data/CODE_Bold.otf' size='64' out='data.CODE_Bold64.fuv'/>
+	
+	<Model in='data/char_03.dae' out='data/char_03.mdf'/>
+	<Model in='data/hand_03.dae' out='data/hand_03.mdf'/>
+	<Model in='data/monkey.obj' out='data/monkey.mdf'/>
+	<Model in='data/floor.obj' out='data/floor.mdf'/>
+	<Model in='data/Sphere.obj' out='data/Sphere.mdf'/>
+	<Model in='data/Worm.obj' out='data/Worm.mdf'/>
+	
+</Assets>

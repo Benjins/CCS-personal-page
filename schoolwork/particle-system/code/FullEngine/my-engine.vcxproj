@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F80C9DF6-F1A3-4598-9CB5-0A856D2032FC}</ProjectGuid>
+    <RootNamespace>myengine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\projects\my-engine\nupengl.core.0.0.0.1\build\native\include;$(ProjectDir)header\ext;$(ProjectDir)header\ext\freetype2\freetype;$(ProjectDir)header\ext\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\projects\my-engine\nupengl.core.0.0.0.1\build\native\lib\x64\v120;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>MEM_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>C:\projects\my-engine\nupengl.core.0.0.0.1\build\native\include;$(ProjectDir)header\ext;$(ProjectDir)header\ext\freetype2\freetype;$(ProjectDir)header\ext\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;freetype255d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(ProjectDir)packages\nupengl.core.0.0.0.1\build\native\lib\x64\v120;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\projects\my-engine\nupengl.core.0.0.0.1\build\native\include;$(ProjectDir)header\ext;$(ProjectDir)header\ext\freetype2\freetype;$(ProjectDir)header\ext\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\projects\my-engine\nupengl.core.0.0.0.1\build\native\lib\x64\v120;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\packages\freeglut.2.8.1.15\build\native\include;$(ProjectDir)header\ext;$(ProjectDir)header\ext\freetype2\freetype;$(ProjectDir)header\ext\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)packages\nupengl.core.0.0.0.1\build\native\lib\x64\v120;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;freetype255d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="3dbasics\Basis.cpp" />
+    <ClCompile Include="3dbasics\Box.cpp" />
+    <ClCompile Include="3dbasics\Matrix.cpp" />
+    <ClCompile Include="3dbasics\Plane.cpp" />
+    <ClCompile Include="3dbasics\Quaternion.cpp" />
+    <ClCompile Include="3dbasics\Ray.cpp" />
+    <ClCompile Include="3dbasics\Sphere.cpp" />
+    <ClCompile Include="3dbasics\Transform.cpp" />
+    <ClCompile Include="3dbasics\Triangle.cpp" />
+    <ClCompile Include="3dbasics\Vector2.cpp" />
+    <ClCompile Include="3dbasics\Vector3.cpp" />
+    <ClCompile Include="src\3DUtilities.cpp" />
+    <ClCompile Include="src\AABB.cpp" />
+    <ClCompile Include="src\Armature.cpp" />
+    <ClCompile Include="src\ArmatureAnimation.cpp" />
+    <ClCompile Include="src\AudioSystem.cpp" />
+    <ClCompile Include="src\Collider.cpp" />
+    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\CubeMap.cpp" />
+    <ClCompile Include="src\Drawcall.cpp" />
+    <ClCompile Include="src\EditorComponentGui.cpp" />
+    <ClCompile Include="src\EditorScene.cpp" />
+    <ClCompile Include="src\FontBMPMaker.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\GuiElement.cpp" />
+    <ClCompile Include="src\GuiSystem.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Interval.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Mat4.cpp" />
+    <ClCompile Include="src\Material.cpp" />
+    <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\Pathfinding.cpp" />
+    <ClCompile Include="src\PhysicsSim.cpp" />
+    <ClCompile Include="src\RaycastHit.cpp" />
+    <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\RigidBody.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\SceneLoading.cpp" />
+    <ClCompile Include="src\SCTransform.cpp" />
+    <ClCompile Include="src\simple-xml.cpp" />
+    <ClCompile Include="src\SourceParser.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Vector4.cpp" />
+    <ClCompile Include="test\testing.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3dbasics\3dbasics.h" />
+    <ClInclude Include="3dbasics\Basis.h" />
+    <ClInclude Include="3dbasics\Box.h" />
+    <ClInclude Include="3dbasics\Matrix.h" />
+    <ClInclude Include="3dbasics\Plane.h" />
+    <ClInclude Include="3dbasics\Quaternion.h" />
+    <ClInclude Include="3dbasics\Ray.h" />
+    <ClInclude Include="3dbasics\Sphere.h" />
+    <ClInclude Include="3dbasics\Transform.h" />
+    <ClInclude Include="3dbasics\Triangle.h" />
+    <ClInclude Include="3dbasics\Vector2.h" />
+    <ClInclude Include="3dbasics\Vector3.h" />
+    <ClInclude Include="header\ext\3dbasics.h" />
+    <ClInclude Include="header\ext\Basis.h" />
+    <ClInclude Include="header\ext\Box.h" />
+    <ClInclude Include="header\ext\EasyBMP.h" />
+    <ClInclude Include="header\ext\EasyBMP_BMP.h" />
+    <ClInclude Include="header\ext\EasyBMP_DataStructures.h" />
+    <ClInclude Include="header\ext\EasyBMP_VariousBMPutilities.h" />
+    <ClInclude Include="header\ext\Matrix.h" />
+    <ClInclude Include="header\ext\Plane.h" />
+    <ClInclude Include="header\ext\Quaternion.h" />
+    <ClInclude Include="header\ext\Ray.h" />
+    <ClInclude Include="header\ext\simple-xml.h" />
+    <ClInclude Include="header\ext\Sphere.h" />
+    <ClInclude Include="header\ext\Transform.h" />
+    <ClInclude Include="header\ext\Triangle.h" />
+    <ClInclude Include="header\ext\Vector2.h" />
+    <ClInclude Include="header\ext\Vector3.h" />
+    <ClInclude Include="header\int\3DUtilities.h" />
+    <ClInclude Include="header\int\AABB.h" />
+    <ClInclude Include="header\int\Animation.h" />
+    <ClInclude Include="header\int\Armature.h" />
+    <ClInclude Include="header\int\ArmatureAnimation.h" />
+    <ClInclude Include="header\int\AudioSystem.h" />
+    <ClInclude Include="header\int\BoneTransform.h" />
+    <ClInclude Include="header\int\Collider.h" />
+    <ClInclude Include="header\int\Component.h" />
+    <ClInclude Include="header\int\CubeMap.h" />
+    <ClInclude Include="header\int\Drawcall.h" />
+    <ClInclude Include="header\int\EditorComponentGui.h" />
+    <ClInclude Include="header\int\EditorScene.h" />
+    <ClInclude Include="header\int\FontBMPMaker.h" />
+    <ClInclude Include="header\int\GameObject.h" />
+    <ClInclude Include="header\int\GuiElement.h" />
+    <ClInclude Include="header\int\GuiSystem.h" />
+    <ClInclude Include="header\int\Input.h" />
+    <ClInclude Include="header\int\Interval.h" />
+    <ClInclude Include="header\int\Light.h" />
+    <ClInclude Include="header\int\LoadingUtilities.h" />
+    <ClInclude Include="header\int\Macros.h" />
+    <ClInclude Include="header\int\Mat4.h" />
+    <ClInclude Include="header\int\Material.h" />
+    <ClInclude Include="header\int\MetaTypeInfo.h" />
+    <ClInclude Include="header\int\Model.h" />
+    <ClInclude Include="header\int\ParticleSystem.h" />
+    <ClInclude Include="header\int\Pathfinding.h" />
+    <ClInclude Include="header\int\PhysicsSim.h" />
+    <ClInclude Include="header\int\PostProcessor.h" />
+    <ClInclude Include="header\int\RaycastHit.h" />
+    <ClInclude Include="header\int\ResourceManager.h" />
+    <ClInclude Include="header\int\RigidBody.h" />
+    <ClInclude Include="header\int\Scene.h" />
+    <ClInclude Include="header\int\SCTransform.h" />
+    <ClInclude Include="header\int\SourceParser.h" />
+    <ClInclude Include="header\int\Texture.h" />
+    <ClInclude Include="header\int\Timer.h" />
+    <ClInclude Include="header\int\UserComps.h" />
+    <ClInclude Include="header\int\Vector4.h" />
+    <ClInclude Include="test\testing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\EasyBMP.a" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
