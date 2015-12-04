@@ -22,6 +22,23 @@ var chessPieces = [];
 
 var canvas;
 
+function RemovePiece(piece){
+	chessPieces.splice(chessPieces.indexOf(piece),1);
+	console.log("Removed piece: " + piece);
+}
+
+function FindPiece(x, y){
+	var foundPiece = null;
+	for(var idx in chessPieces){
+		if(chessPieces[idx].gridX === x && chessPieces[idx].gridY === y){
+			foundPiece = chessPieces[idx];
+			break;
+		}
+	}
+	
+	return foundPiece;
+}
+
 function CreateChessPiece(startX, startY, type, color, gridSize){
 	var newPiece = {};
 	
@@ -67,15 +84,76 @@ function CreateChessPiece(startX, startY, type, color, gridSize){
 						this.gridX = newX;
 						this.gridY = newY;
 						console.log("Accept move to: (" + newX + ", " + newY + ") on: ");
-						//console.log(this);
+					}
+				}
+			}
+			else if(newX === this.gridX - 1 || newX === this.gridX + 1){
+				if(newY === this.gridY + (this.color === 0 ? 1 : -1)){
+					var foundPiece = FindPiece(newX, newY);
+					
+					if(foundPiece !== null && foundPiece.color !== this.color){
+						this.gridX = newX;
+						this.gridY = newY;
+						console.log("Accept move to: (" + newX + ", " + newY + ") on: ");
+						RemovePiece(foundPiece);
 					}
 				}
 			}
 			
 			console.log("after: " + this.gridY);
 		}
-		else if(this.type === PieceTypes.BISHOP){}
-		else if(this.type === PieceTypes.KNIGHT){}
+		else if(this.type === PieceTypes.BISHOP){
+			var xDiff = newX - this.gridX;
+			var yDiff = newY - this.gridY;
+			
+			if(Math.abs(xDiff) === Math.abs(yDiff)){
+				var xSign = Math.sign(xDiff);
+				var ySign = Math.sign(yDiff);
+				var valid = true;
+				for(var i = 1; i < Math.abs(xDiff) - 1; i++){
+					var isEmpty = (FindPiece(this.gridX + i*xSign, this.gridY + i*ySign) === null);
+					
+					if(!isEmpty){
+						valid = false;
+						break;
+					}
+				}
+				
+				var destPiece = FindPiece(newX, newY);
+				valid = valid && (destPiece === null || destPiece.color != this.color);
+				
+				if(valid){
+					this.gridX = newX;
+					this.gridY = newY;
+					console.log("Accept move to: (" + newX + ", " + newY + ") on: ");
+					
+					if(destPiece){
+						RemovePiece(destPiece);
+					}
+				}
+			}
+		}
+		else if(this.type === PieceTypes.KNIGHT){
+			var xDiff = newX - this.gridX;
+			var yDiff = newY - this.gridY;
+			
+			var mult = xDiff * yDiff;
+			console.log("Moving knight with mult: " + mult);
+			if(Math.abs(mult) === 2){
+				var destPiece = FindPiece(newX, newY);
+				console.log("this color: " + this.color)
+				console.log(destPiece);
+				if(destPiece === null || destPiece.color !== this.color){
+					this.gridX = newX;
+					this.gridY = newY;
+					console.log("Accept move to: (" + newX + ", " + newY + ") on: ");
+					
+					if(destPiece){
+						RemovePiece(destPiece);
+					}
+				}
+			}
+		}
 		else if(this.type === PieceTypes.ROOK){}  
 		else if(this.type === PieceTypes.KING){} 
 		else if(this.type === PieceTypes.QUEEN){}
@@ -124,24 +202,24 @@ window.onload = function(){
 	}
 	
 	CreateChessPiece(0, 0, PieceTypes.ROOK, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(0, 7, PieceTypes.ROOK, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(7, 0, PieceTypes.ROOK, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(0, 7, PieceTypes.ROOK, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(7, 0, PieceTypes.ROOK, 0, canvasCtx.canvas.height/8);
 	CreateChessPiece(7, 7, PieceTypes.ROOK, 1, canvasCtx.canvas.height/8);
 	
 	CreateChessPiece(1, 0, PieceTypes.KNIGHT, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(1, 7, PieceTypes.KNIGHT, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(6, 0, PieceTypes.KNIGHT, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(1, 7, PieceTypes.KNIGHT, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(6, 0, PieceTypes.KNIGHT, 0, canvasCtx.canvas.height/8);
 	CreateChessPiece(6, 7, PieceTypes.KNIGHT, 1, canvasCtx.canvas.height/8);
 	
 	CreateChessPiece(2, 0, PieceTypes.BISHOP, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(2, 7, PieceTypes.BISHOP, 0, canvasCtx.canvas.height/8);
-	CreateChessPiece(5, 0, PieceTypes.BISHOP, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(2, 7, PieceTypes.BISHOP, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(5, 0, PieceTypes.BISHOP, 0, canvasCtx.canvas.height/8);
 	CreateChessPiece(5, 7, PieceTypes.BISHOP, 1, canvasCtx.canvas.height/8);
 	
-	CreateChessPiece(4, 0, PieceTypes.QUEEN, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(4, 0, PieceTypes.QUEEN, 0, canvasCtx.canvas.height/8);
 	CreateChessPiece(4, 7, PieceTypes.QUEEN, 1, canvasCtx.canvas.height/8);
 	
-	CreateChessPiece(3, 0, PieceTypes.KING, 1, canvasCtx.canvas.height/8);
+	CreateChessPiece(3, 0, PieceTypes.KING, 0, canvasCtx.canvas.height/8);
 	CreateChessPiece(3, 7, PieceTypes.KING, 1, canvasCtx.canvas.height/8);
 	
 	window.onmousedown = function(evt){
@@ -175,13 +253,7 @@ window.onload = function(){
 			var newGridX = Math.floor(selectedPiece.x / selectedPiece.gridSize);
 			var newGridY = Math.floor(selectedPiece.y / selectedPiece.gridSize);
 			
-			console.log("before: ");
-			console.log(selectedPiece);
-			
 			selectedPiece.tryMove(newGridX, newGridY);
-			
-			console.log("after: ");
-			console.log(selectedPiece);
 		}
 		
 		selectedPiece = null;
