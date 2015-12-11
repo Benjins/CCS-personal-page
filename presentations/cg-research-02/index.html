@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Graphics Projects</title>
+
+		<meta name="description" content="A presentation about optimizing a tower defense game.">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Research: Skeletal Animation Engines</h1>
+					<p>
+						<small>Created by <a href="http://www.ccs.neu.edu/home/bnsmith/">Benji Smith</a> using <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a></small>
+					</p>
+				</section>
+				
+				<section>
+					<h1>What Can be Done</h1>
+					
+					<ul>
+						<li>Animation states: Be able to switch between multiple states</li>
+						<li>Animation blending: Sample from two clips, merge them</li>
+						<li>Additive blending: Add two animations (useful for blending several factors)</li>
+						<li>Inverse Kinematics (IK) solving: Adjust final position to place hand/foot at location</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>What My Engine Does</h1>
+					<ul>
+						<li>Synchronise and blend two animations</li>
+						<li>Have multiple states for multiple clips</li>
+						<li>Have an IK solver that takes arbitrary constraints</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>How Other Engines Work: Unity</h1>
+					
+					<img width='500px' src='img/unity_1.jpg'/>
+					
+					<p>A tree of animation nodes, which can be blended together.  A blend is a node that takes one or more inputs, and blends based on parameters set in code.</p>
+				</section>
+				
+				<section>
+					<img width='300px' src='img/unity_2.jpg'/>
+					
+					<p>Timing, overlap, synchronisation can all be controlled.</p>
+					<p>Additionally, blending can be 1- or 2-dimensional.</p>
+				</section>
+				
+				<section>
+					<img src='img/unity_3.jpg'/>
+					
+					<p>Each individual node can be additive or not, and have an IK pass or not (usually that's done at the top level though).</p>
+					
+					<p>The top-level node determines the final pose of the model.</p>
+				</section>
+				
+				<section>
+					<h1>Project: Ocean Shader+Rendering</h1>
+				</section>
+				
+				<section>
+					<h1>What's Been Done</h1>
+					
+					<img width='500px' src='img/ocean2_1.jpg'/>
+					
+					<ul>
+						<li>Vertex deformation: Larger waves</li>
+						<li>Improved lighting</li>
+						<li>Uniform control of parameters</li>
+					<ul>
+				</section>
+				
+				<section>
+					<h1>Updated Shader Code</h1>
+					<code class="c++">
+					<small>
+					<pre>
+#version 130
+in vec3 Pos;
+out vec3 _pos;
+out vec3 _normal;
+uniform float _time;
+uniform sampler2D _dispTex;
+uniform mat4 _camMatrix;
+
+vec3 getOceanLoc(vec3 vPos){
+	return vPos + vec3(0,cos(_time*1.5+texture2D(_dispTex,vPos.xz*0.2).r *20),0)*0.03
+				+ vec3(0,cos(_time*0.3+texture2D(_dispTex,vPos.xz*0.004).r*20),0)*0.06
+				+ vec3(0,cos(_time*0.3+texture2D(_dispTex,vPos.xz*0.0001).r*10),0)*1.08;
+}
+
+void main(){
+	vec3 pos = getOceanLoc(Pos);
+	vec3 pos2 = getOceanLoc(Pos+vec3(0.5,0,0));
+	vec3 pos3 = getOceanLoc(Pos+vec3(0,0,0.5));
+	vec3 newNormal = cross(pos2 - pos, pos3 - pos);
+	_normal = newNormal / length(newNormal);
+	vec4 finalPos = _camMatrix * vec4(pos, 1.0);
+	_pos = pos/50; gl_Position = finalPos;
+}
+					</pre>
+					</small>
+					</code>
+				</section>
+
+					<section>
+					<h1>Updated Shader Code</h1>
+					<code class="c++">
+					<small>
+					<pre>
+
+#version 130
+in vec3 _pos;
+in vec3 _normal;
+out vec4 FragColor;
+uniform sampler2D _frame;
+uniform samplerCube _cubeMap;
+uniform vec3 lightDir = vec3(0.0,-0.6,-0.8);
+
+void main(){
+	float lightVal = 0.5 + 1 - (dot(lightDir, _normal)+1)/2;
+	vec3 sample1 = texture(_cubeMap, _normal.yzx + vec3(0,  0.1,  0)).rgb;
+	vec3 sample2 = texture(_cubeMap, _normal.yzx + vec3(0, -0.1,  0)).rgb;
+	vec3 sample3 = texture(_cubeMap, _normal.yzx + vec3(0,  0,  0.1)).rgb;
+	vec3 sample4 = texture(_cubeMap, _normal.yzx + vec3(0,  0, -0.1)).rgb;
+	
+	vec3 sampleAvg = (sample1+sample2+sample3+sample4)/4;
+	FragColor = vec4(sampleAvg*lightVal, 1.0);
+}
+					</pre>
+					</small>
+					</code>
+				</section>
+				
+				<section>
+					<h1>Lighting</h1>
+					
+					<img width='400px' src='img/ocean2_2.jpg'/>
+					<img width='400px' src='img/ocean2_3.jpg'/>
+					
+					<p>Lighting is now more accurate, reflected light is greater at higher angles of incidence.</p>
+				</section>
+				
+				<section>
+					<h1>Sky Blurring</h1>
+					
+					<img width='600px' src='img/ocean2_2.jpg'/>
+					
+					<p>Take multiple samples from different angles, and average them.</p>
+				</section>
+				
+				<section>
+					<h1>Download Demo</h1>
+					
+					<p><a href='files/Ocean_Shader_WindowsDemo.zip'>Click here to download a Windows demo of the ocean-shader.</a></p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
