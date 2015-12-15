@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Particles!</title>
+<script src="js/particles.js"></script>
+<style>
+#main-canvas{
+	width:700px;
+	height:700px;
+	border: 1px solid #111;
+}
+</style>
+</head>
+<body>
+<button style="width:120px;height:30px;"onclick='window.updateParticles = !window.updateParticles'>Toggle Update</button>
+<button style="width:120px;height:30px;"onclick='Reset();'>Reset System</button>
+<br/>
+Start Position X:<input type="number"  oninput='particleSystem.startPosition.x = parseFloat(this.value)' value='400' min="0" max="800"/>
+Start Position Y:<input type="number"  oninput='particleSystem.startPosition.y = parseFloat(this.value)' value='400' min="0" max="800"/>
+<br/>
+Start Velocity X:<input type="number" step="any" oninput='particleSystem.startVelocty.x = parseFloat(this.value)' value='0' min="-100" max="100"/>
+Start Velocity Y:<input type="number" step="any" oninput='particleSystem.startVelocty.y = parseFloat(this.value)' value='100' min="-100" max="100"/>
+<br/>
+Start Size:<input type="number" step="any" oninput='particleSystem.startSize = parseFloat(this.value)' value='10' min="0" max="50"/>
+End Size:<input type="number" step="any" oninput='particleSystem.endSize = parseFloat(this.value)' value='0' min="0" max="50"/>
+<br/>
+Gravity Factor:<input type="number" step="any" oninput='particleSystem.gravityFactor = parseFloat(this.value)' value='-50' min="-100" max="100"/>
+<br/>
+Particles Per Second:<input type="number" step="any" oninput='particleSystem.particlesPerSecond = parseFloat(this.value)' value='20' min="0" max="50"/>
+<br/>
+Particle Lifetime:<input type="number" step="any" oninput='particleSystem.maxLifetime = parseFloat(this.value)' value='10' min="0" max="50"/>
+<br/>
+Start Color (R):<input type="number" oninput='particleSystem.startCol.r = parseInt(this.value)' value='220' min="0" max="255"/>
+Start Color (G):<input type="number" oninput='particleSystem.startCol.g = parseInt(this.value)' value='100' min="0" max="255"/>
+Start Color (G):<input type="number" oninput='particleSystem.startCol.b = parseInt(this.value)' value='100' min="0" max="255"/>
+<br/>
+End Color (R):<input type="number" oninput='particleSystem.endCol.r = parseInt(this.value)' value='20'  min="0" max="255"/>
+End Color (G):<input type="number" oninput='particleSystem.endCol.g = parseInt(this.value)' value='80'  min="0" max="255"/>
+End Color (G):<input type="number" oninput='particleSystem.endCol.b = parseInt(this.value)' value='200' min="0" max="255"/>
+<br/>
+Start Alpha:<input step="any" type="number" oninput='particleSystem.startCol.a = parseFloat(this.value)' value='1' min="0" max="1"/>
+End Alpha:<input step="any" type="number" oninput='particleSystem.endCol.a = parseFloat(this.value)' value='0' min="0" max="1"/>
+<!--
+particleSystem.startCol = {"r":220,"g":100,"b":100};
+particleSystem.endCol = {"r":20,"g":80,"b":200};
+particleSystem.mass = 10;
+-->
+<br/>
+<br/>
+<canvas id='main-canvas' width='800px' height='800px'>
+</canvas>
+</body>
+
+</html>
