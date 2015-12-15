@@ -59,18 +59,35 @@ function FindPiece(x, y){
 }
 
 function pieceIsThreatened(pc){
+	var defenders = [];
+	var attackers = [];
+	
 	for(var idx = 0; idx < chessPieces.length; idx++){
-		if(chessPieces[idx].color !== pc.color){
-			var moves = chessPieces[idx].GetMoves();
-			for(var mi in moves){
-				if(moves[mi].x === pc.gridX && moves[mi].y === pc.gridY){
-					return true;
+		var moves = chessPieces[idx].GetMoves();
+		for(var mi in moves){
+			if(moves[mi].x === pc.gridX && moves[mi].y === pc.gridY){
+				if(chessPieces[idx].color === pc.color){
+					defenders.push(chessPieces[idx]);
+					//console.log("Found defender");
+				}
+				else{
+					attackers.push(chessPieces[idx]);
+					//console.log("Found attacker");
 				}
 			}
 		}
 	}
 	
-	return false;
+	defenders.sort(function(a,b){return chessPieceValues[a.type] - chessPieceValues[b.type]});
+	attackers.sort(function(a,b){return chessPieceValues[a.type] - chessPieceValues[b.type]});
+	
+	var atkVal = chessPieceValues[pc.type];
+	for(var idx = 0; idx < attackers.length && idx < defenders.length; idx++){
+		atkVal -= chessPieceValues[attackers[idx].type];
+		atkVal += chessPieceValues[defenders[idx].type];
+	}
+	
+	return atkVal;
 }
 
 function AnalyzeBoard(col){
@@ -79,19 +96,18 @@ function AnalyzeBoard(col){
 	var benefit = 0;
 	for(var idx in chessPieces){
 		if(chessPieces.color == col){
-			benefit += chessPieceValues[chessPieces[idx].type] * captureMultiplier;
-		}
-		else{
 			benefit -= chessPieceValues[chessPieces[idx].type] * captureMultiplier;
 		}
+		else{
+			benefit += chessPieceValues[chessPieces[idx].type] * captureMultiplier;
+		}
 		
-		if(pieceIsThreatened(chessPieces[idx])){
-			if(chessPieces.color === col){
-				benefit -= chessPieceValues[chessPieces[idx].type];
-			}
-			else{
-				benefit += chessPieceValues[chessPieces[idx].type];
-			}
+		var atkVal = pieceIsThreatened(chessPieces[idx]);
+		if(chessPieces.color === col){
+			benefit -= atkVal;
+		}
+		else{
+			benefit += atkVal;
 		}
 	}
 	
@@ -198,6 +214,62 @@ function CreateChessPiece(startX, startY, type, color, gridSize){
 					var foundPiece = FindPiece(x,y);
 					if(foundPiece === null || foundPiece.color !== this.color){
 						moves.push(potentialMoves[idx]);
+					}
+				}
+			}
+		}
+		else if(this.type === PieceTypes.ROOK){
+			var dirs = [true, true, true, true];
+			for(var mv = 1; mv < 8; mv++){
+				var newX = [this.gridX + mv,this.gridX - mv,this.gridX,     this.gridX];
+				var newY = [this.gridY,     this.gridY,     this.gridY + mv,this.gridY - mv];
+				
+				for(var idx = 0; idx < 4; idx++){
+					if(dirs[idx]){
+						if(newX[idx] >= 0 && newX[idx] < 8 && newY[idx] >= 0 && newY[idx] < 8){
+							var foundPiece = FindPiece(newX[idx], newY[idx]);
+							if(foundPiece === null){
+								moves.push({x: newX[idx], y: newY[idx]});
+							}
+							else if(foundPiece.color !== this.color){
+								moves.push({x: newX[idx], y: newY[idx]});
+								dirs[idx] = false;
+							}
+							else{
+								dirs[idx] = false;
+							}
+						}
+						else{
+							dirs[idx] = false;
+						}
+					}
+				}
+			}
+		}
+		else if(this.type === PieceTypes.QUEEN){
+			var dirs = [true, true, true, true, true, true, true, true];
+			for(var mv = 1; mv < 8; mv++){
+				var newX = [this.gridX + mv,this.gridX - mv,this.gridX,     this.gridX,      this.gridX + mv,this.gridX + mv,this.gridX - mv,this.gridX - mv];
+				var newY = [this.gridY,     this.gridY,     this.gridY + mv,this.gridY - mv, this.gridY + mv,this.gridY - mv,this.gridY + mv,this.gridY - mv];
+				
+				for(var idx = 0; idx < 8; idx++){
+					if(dirs[idx]){
+						if(newX[idx] >= 0 && newX[idx] < 8 && newY[idx] >= 0 && newY[idx] < 8){
+							var foundPiece = FindPiece(newX[idx], newY[idx]);
+							if(foundPiece === null){
+								moves.push({x: newX[idx], y: newY[idx]});
+							}
+							else if(foundPiece.color !== this.color){
+								moves.push({x: newX[idx], y: newY[idx]});
+								dirs[idx] = false;
+							}
+							else{
+								dirs[idx] = false;
+							}
+						}
+						else{
+							dirs[idx] = false;
+						}
 					}
 				}
 			}
@@ -601,4 +673,13 @@ window.onload = function(){
 	};
 	
 	setInterval(function(){Update();Render(canvasCtx);}, 200);
+}
+
+function StartAutoPlay(){
+	var turn = 0;
+	window.autoPlayId = setInterval(function(){MakeAIMove(turn); turn = 1 - turn;}, 1200);
+}
+
+function StopAutoPlay(){
+	clearInterval(window.autoPlayId);
 }
