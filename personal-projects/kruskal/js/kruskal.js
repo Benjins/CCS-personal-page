@@ -2,11 +2,11 @@ var Node = function(name){this.name = name;};
 
 var Edge = function(v1,v2, weight){this.v1 = v1; this.v2 = v2; this.weight = weight;};
 
-var verts = [new Node("A"), new Node("B"), new Node("C"), new Node("D"), new Node("E"), new Node("F"), new Node("G")];
+var verts = [new Node("A"), new Node("B"), new Node("C"), new Node("D"), new Node("E"), new Node("F"), new Node("G"), new Node("H")];
 
 var edges = [new Edge(verts[0], verts[1], 2), new Edge(verts[1], verts[2], 3), new Edge(verts[0], verts[2], 5), 
 			 new Edge(verts[2], verts[4], 3), new Edge(verts[3], verts[5], 1), new Edge(verts[5], verts[6], 1),
-			 new Edge(verts[2], verts[6], 1), new Edge(verts[3], verts[4], 1)];
+			 new Edge(verts[2], verts[6], 1), new Edge(verts[3], verts[4], 1), new Edge(verts[7], verts[6], 1)];
 			 
 			 
 var badEdges = [];
@@ -140,6 +140,8 @@ function Render(ctx){
 		
 		ctx.fillStyle = "#111";
 		ctx.fillText(newVerts[idx].name, newVerts[idx].x, newVerts[idx].y);
+		ctx.fillStyle = "#228";
+		ctx.fillText(newVerts[idx].forest.name, newVerts[idx].x, newVerts[idx].y+16);
 	}
 	
 	var edgeCpy = [];
@@ -149,6 +151,8 @@ function Render(ctx){
 	edgeCpy.sort(function(a,b){return a.weight - b.weight;});
 	
 	var edgeInfo = "";
+	
+	ctx.fillStyle = "#111";
 	
 	for(var idx = 0; idx < edgeCpy.length; idx++){
 		if(idx > 0){
